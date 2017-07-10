@@ -26,9 +26,29 @@
         "./assets/css/components.css",
         "./assets/css/colors.css"
 
+      
+
+
         
       ],
-      "scripts": [
+      "scripts": [     
+                     "./assets/js/core/libraries/jquery.min.js",
+                     "./assets/js/core/app.js",
+                     "./assets/js/core/libraries/bootstrap.min.js",
+                   
+                   
+                    "./assets/js/plugins/tables/datatables/datatables.min.js",
+                     "./assets/js/pages/datatables_basic.js",
+                    "./assets/js/plugins/loaders/pace.min.js",
+                    "./assets/js/plugins/loaders/blockui.min.js",
+                    "./assets/js/pages/datatables_extension_fixed_columns.js",
+                    "./assets/js/plugins/forms/selects/select2.min.js"
+
+
+     
+
+	
+	
       
      
       ],
