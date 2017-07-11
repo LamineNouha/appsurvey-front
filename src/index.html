@@ -8,7 +8,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 
+           <script>
+              function PanelFunction(){
+var r= document.createElement('DIV');
+var y = document.createElement("DIV");
+var z = document.createElement("BUTTON");
+var g = document.createElement("SPAN");
+r.setAttribute("class", "panel panel-flat border-top-info border-bottom-info");
+y.setAttribute("class", "panel-heading");
+z.setAttribute("class", "btn btn-success btn-add");
+z.setAttribute("type", "button");
+g.setAttribute("class", "glyphicon glyphicon-plus");
 
+//y.setAttribute("Name", "textelement_" + i);
+r.appendChild(y);
+y.appendChild(g);
+y.appendChild(z)
+z.appendChild(g)
+/*g.setAttribute("onclick", "removeElement('myForm','id_" + i + "')");
+r.appendChild(g);
+r.setAttribute("id", "id_" + i);*/
+document.getElementById("fields").appendChild(r);
+}</script>
 
 
 </head>
