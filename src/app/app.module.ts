@@ -7,14 +7,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { LayoutModule } from './layout/layout.module';
-import { AppRoutesModule, routingComponents} from './app.routes.module';
+import { AppRoutesModule, routingComponents} from './shared/app.routes.module';
 import {QuestionnaireService} from './shared/services/questionnaire.service';
+import { RegistrationComponent } from './manage-personal/registration/registration.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    routingComponents
+    routingComponents,
+    RegistrationComponent
     
   ],
   imports: [

@@ -101,7 +101,9 @@
                 <form formArrayName="reponses" role="form" autocomplete="off" id="formq1" >
                     <div class="entry input-group col-xs-3" id="entryq1r1" *ngFor="let reponses of myForm.controls.questions.controls[i].controls.reponses.controls; let j=index" [formGroupName]="j" >
 						<input id="q1r1"  class="form-control" formControlName="choix" type="text" placeholder="Réponse{{j+1}} " />
-				
+				 <small [hidden]="myForm.controls.questions.controls[i].controls.reponses.controls[j].controls.choix.valid" class="text-danger">
+            La réponse est obligatoire
+                </small>
                         <span class="input-group-btn">
                             <button class="btn btn-success" type="button" (click)="addReponse(i)">
                                 <span class="glyphicon glyphicon-plus"></span>
@@ -110,9 +112,7 @@
                             </button>
 						</span>
 				
-				 <small [hidden]="myForm.controls.questions.controls[i].controls.reponses.controls[j].controls.choix.valid" class="text-danger">
-            La réponse est obligatoire
-                </small>
+				
                     </div>
                     
                 </form>
