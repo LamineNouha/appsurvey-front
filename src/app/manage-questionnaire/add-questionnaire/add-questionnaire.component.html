@@ -48,14 +48,14 @@
                       <div formArrayName="questions">
 
 <!-- Accordion -->
-							<div *ngFor="let questions of myForm.controls.questions.controls; let i=index" class="panel-group panel-group-control" id="accordion-target">
+							<div *ngFor="let questions of myForm.controls.questions.controls; let i=index;" class="panel-group panel-group-control" id="collapsible-target">
 								<div class="panel panel-white" id="q1">
 									<div class="panel-heading">
 
 
 										
 										<h6 class="panel-title">
-											<a data-toggle="collapse" data-parent="#accordion-target" href="#accordion-control-group1">Question {{i + 1}}
+											<a data-toggle="collapse" data-parent="#collapsible-target" href="#{{i + 1}}">Question {{i + 1}}
 												</a>
 
 
@@ -70,7 +70,7 @@
 
 											
 									</div>
-									<div id="accordion-control-group1" class="panel-collapse collapse in">
+									<div id="{{i + 1}}" class="panel-collapse collapse in">
 										<div class="panel-body" [formGroupName]="i">
 
 											<fieldset>
@@ -109,9 +109,9 @@
                                 <span class="glyphicon glyphicon-plus"></span>
                             </button>
 						</span>
-						
+				
 				 <small [hidden]="myForm.controls.questions.controls[i].controls.reponses.controls[j].controls.choix.valid" class="text-danger">
-                    Le choix est obligatoire
+            La réponse est obligatoire
                 </small>
                     </div>
                     
