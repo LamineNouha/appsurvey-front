@@ -1,6 +1,6 @@
 
 <!-- Basic legend -->
-							<form class="form-horizontal" action="#">
+							<form  [formGroup]="myForm" novalidate (ngSubmit)="save(myForm)" class="form-horizontal" >
 								<div class="panel panel-flat">
 									<div class="panel-heading">
 										<h5 class="panel-title">Ajouter un questionnaire</h5>
@@ -20,7 +20,10 @@
 											<div class="form-group">
 												<label class="col-lg-3 control-label">Titre du questionnaire:</label>
 												<div class="col-lg-9">
-													<input type="text" class="form-control" placeholder="Titre du questionnaire">
+													<input  type="text" name="titre" class="form-control" formControlName="titre" placeholder="Titre du questionnaire" >
+													 <small *ngIf="!myForm.controls.titre.valid" class="text-danger">
+             											 Titre est obligatoire (minimum 5 charactères).
+            										</small>
 												</div>
 											</div>
 
@@ -36,23 +39,23 @@
                       	<legend class="text-semibold">
 												<i class="icon-file-text2 position-left"></i>
 												Les questions 
-												<a class="control-arrow" data-toggle="collapse" data-target="#demo1" onclick="addQuestion()">
+												<a class="control-arrow" data-toggle="collapse" data-target="#demo1" (click)="addQuestion()">
 												<i class="glyphicon glyphicon-plus"></i>
 												</a>
 											</legend>
 					                	
                       
-                     
+                      <div formArrayName="questions">
 
 <!-- Accordion -->
-							<div class="panel-group panel-group-control" id="accordion-target">
+							<div *ngFor="let questions of myForm.controls.questions.controls; let i=index" class="panel-group panel-group-control" id="accordion-target">
 								<div class="panel panel-white" id="q1">
 									<div class="panel-heading">
 
 
 										
 										<h6 class="panel-title">
-											<a data-toggle="collapse" data-parent="#accordion-target" href="#accordion-control-group1">Question 1 
+											<a data-toggle="collapse" data-parent="#accordion-target" href="#accordion-control-group1">Question {{i + 1}}
 												</a>
 
 
@@ -60,7 +63,7 @@
 
 
 
-												<button style="float:right" type="button" class="note-btn btn btn-default btn-sm" onclick="removeQuestion(1)">
+												<button style="float:right" type="button" class="note-btn btn btn-default btn-sm" *ngIf="myForm.controls.questions.controls.length > 1" (click)="removeQuestion()">
 												<i class="icon-cross2 text-danger-400"></i>
 												</button>
 												</h6>
@@ -68,7 +71,7 @@
 											
 									</div>
 									<div id="accordion-control-group1" class="panel-collapse collapse in">
-										<div class="panel-body">
+										<div class="panel-body" [formGroupName]="i">
 
 											<fieldset>
 			
@@ -76,7 +79,10 @@
 											<div class="form-group">
 												<label class="col-lg-3 control-label">Titre de la question:</label>
 												<div class="col-lg-9">
-													<input type="text" class="form-control" placeholder="Titre de la question">
+													<input type="text" class="form-control" placeholder="Titre de la question" formControlName="contenu">
+													<small [hidden]="myForm.controls.questions.controls[i].controls.contenu.valid" class="text-danger">
+                   										 La question est obligatoire
+               										 </small>
 												</div>
 											</div>
 
@@ -87,19 +93,26 @@
 										</fieldset>
 											
 
-                      <div class="container">
-	<div class="row">
+              <div class="container" >
+    <div class="row" >
         <div class="control-group" id="fields">
             <label class="control-label" for="field1">Les éléments de réponse:</label>
-            <div class="controls"> 
-                <form role="form" autocomplete="off" id="formq1">
-                    <div class="entry input-group col-xs-3" id="entryq1r1">
-                        <input id="q1r1"  class="form-control" name="fields1[]" type="text" placeholder="Réponse" />
-                    	<span class="input-group-btn">
-                            <button class="btn btn-success" type="button" onclick="addReponse(1)">
+            <div class="controls" > 
+                <form formArrayName="reponses" role="form" autocomplete="off" id="formq1" >
+                    <div class="entry input-group col-xs-3" id="entryq1r1" *ngFor="let reponses of myForm.controls.questions.controls[i].controls.reponses.controls; let j=index" [formGroupName]="j" >
+						<input id="q1r1"  class="form-control" formControlName="choix" type="text" placeholder="Réponse{{j+1}} " />
+				
+                        <span class="input-group-btn">
+                            <button class="btn btn-success" type="button" (click)="addReponse(i)">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button> <button class="btn btn-danger" type="button" *ngIf="myForm.controls.questions.controls[i].controls.reponses.controls.length > 1" (click)="removeReponse(i,j)">
                                 <span class="glyphicon glyphicon-plus"></span>
                             </button>
-                        </span>
+						</span>
+						
+				 <small [hidden]="myForm.controls.questions.controls[i].controls.reponses.controls[j].controls.choix.valid" class="text-danger">
+                    Le choix est obligatoire
+                </small>
                     </div>
                     
                 </form>
@@ -107,11 +120,7 @@
             <small>Cliquer + pour ajouter un autre choix de réponse</small>
             </div>
         </div>
-	</div>
-
-
-  
-						</div>
+    </div>
 
 
 										</div>
@@ -127,11 +136,11 @@
 							
 
 							</div>
-
+							</div>
 
 
               <!--fin accordition-->
-				                		
+                      </div>         		
 
 
 							
@@ -146,25 +155,9 @@
 										</fieldset>
 
 										<div class="text-right">
-											<button type="submit" class="btn btn-primary">vailder <i class="icon-arrow-right14 position-right"></i></button>
+											<button type="submit" class="btn btn-primary" [disabled]="!myForm.valid">vailder <i class="icon-arrow-right14 position-right"></i></button>
 										</div>
 									</div>
 								</div>
 							</form>
 							<!-- /basic legend -->
-
-
-
-
-
-
-
-
-
- 
-
-
-
-						
-
-

@@ -21,12 +21,12 @@ return this._http.post("/questionnaires", questionnaire).map(data => data.json()
 }
 
 destroy(questionnaire :Questionnaire){
-return this._http.delete("/questionnaires/"+questionnaire._id).map(data => data.json()).toPromise()
+return this._http.delete("/questionnaires/"+questionnaire.id).map(data => data.json()).toPromise()
 
 }
 
 update(questionnaire :Questionnaire){
-return this._http.put("/questionnaires/"+questionnaire._id,questionnaire).map(data => data.json()).toPromise()
+return this._http.put("/questionnaires/"+questionnaire.id,questionnaire).map(data => data.json()).toPromise()
 
 
 }

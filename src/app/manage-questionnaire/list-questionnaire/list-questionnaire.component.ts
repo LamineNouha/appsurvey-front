@@ -13,7 +13,7 @@ import { EmitterService } from '../../shared/services/emitter.service';
   styleUrls: ['./list-questionnaire.component.css']
 })
 export class ListQuestionnaireComponent implements OnInit {
-  questionnaires: Questionnaire[]= [new Questionnaire(1,"election1",45),new Questionnaire(2,"election2",60)];
+  //questionnaires: Questionnaire[]= [new Questionnaire(1,"election1"),new Questionnaire(2,"election2")];
 
  
  @Input() questionnaireInfo: string;
@@ -64,6 +64,6 @@ export class ListQuestionnaireComponent implements OnInit {
 		if(!this.currentQuestionnaire) {
 			return false;
 		}
-		return this.currentQuestionnaire._id ===  questionnaire._id ? true : false;
+		return this.currentQuestionnaire.id ===  questionnaire.id ? true : false;
 	}
 }
