@@ -5,7 +5,8 @@
 							<!-- List with text -->
 							<div class="panel panel-flat">
 								<div class="panel-heading">
-									<h5 class="panel-title">Liste de questionnaires <button [routerLink]="['/questionnaires/add']" type="button" class="btn btn-success btn-xs btn-icon"> <i class="glyphicon glyphicon-plus"></i></button></h5>
+                  <h5 class="panel-title">Liste de personnels <button [routerLink]="['/personnels/add']" type="button" class="btn btn-success btn-xs btn-icon"> <i class="glyphicon glyphicon-plus"></i></button></h5>
+                  
 									<div class="heading-elements">
 										<ul class="icons-list">
 					                		<li><a data-action="collapse"></a></li>
@@ -15,39 +16,31 @@
 				                	</div>
 								</div>
 
-								<div class="panel-body">
-									<div id="sales-heatmap"></div>
-								</div>
 
-								<div class="table-responsive">
+<div class="table-responsive">
 									<table class="table text-nowrap">
 										<thead>
 											<tr>
-												<th>Questionnaire</th>
-												<th>Nombre de questions</th>
+                        
+												<th>Personnel</th>
+											
 												<th>Actions</th>
 											</tr>
 										</thead>
 										<tbody>
-											<tr *ngFor="let questionnaire of questionnaires">
+											<tr *ngFor="let personnel of personnels">
 												<td>
-													<div class="media-left media-middle">
-														<a href="#" class="btn bg-primary-400 btn-rounded btn-icon btn-xs">
-															<span class="letter-icon"></span>
-														</a>
-													</div>
+													<div class="media-left"><img src="{{personnel.image}}" class="img-circle" alt=""></div>
 
 													<div class="media-body">
 														<div class="media-heading">
-															<a href="#" class="letter-icon-title">{{questionnaire.titre}} </a>
+															<a href="#" class="letter-icon-title">nom  prenom </a>
 														</div>
 
-														<div class="text-muted text-size-small"><i class="icon-checkmark3 text-size-mini position-left"></i> New order</div>
+														<div class="text-muted text-size-small"><i class="icon-mail5 text-size-mini position-left"></i>{{personnel.mail}}</div>
 													</div>
 												</td>
-												<td>
-													<span class="text-muted text-size-small">to calculate</span>
-												</td>
+											
 												<td>
 													<h6 class="text-semibold no-margin">
                                                         
@@ -56,7 +49,6 @@
 
 
 
-                                                <li class="text-primary-600"><a href="#"><i class="icon-pencil7"></i></a></li>
                                                 <li class="text-danger-600"><a href="#"><i class="icon-trash"></i></a></li>
         
                                             </ul>
@@ -71,7 +63,9 @@
 										</tbody>
 									</table>
 								</div>
+
+					
 							</div>
-								</div>
-							</div>
-							<!-- /daily sales -->
+							<!-- /list with text -->
+            </div>
+					</div>

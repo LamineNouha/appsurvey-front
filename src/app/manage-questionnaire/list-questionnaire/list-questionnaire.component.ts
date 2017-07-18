@@ -1,5 +1,5 @@
 import {Component, OnInit,OnChanges,Input} from '@angular/core';
-import {Questionnaire} from '../../shared/models/questionnaire.model';
+import {Questionnaire, Question, Reponse} from '../../shared/models/questionnaire.model';
 import {QuestionnaireService} from '../../shared/services/questionnaire.service';
 import {Observable} from 'rxjs/Rx';
 import { EmitterService } from '../../shared/services/emitter.service';
@@ -13,7 +13,9 @@ import { EmitterService } from '../../shared/services/emitter.service';
   styleUrls: ['./list-questionnaire.component.css']
 })
 export class ListQuestionnaireComponent implements OnInit {
-  //questionnaires: Questionnaire[]= [new Questionnaire(1,"election1"),new Questionnaire(2,"election2")];
+ q:Question[];
+
+  questionnaires: Questionnaire[]= [new Questionnaire(1,"election1",this.q),new Questionnaire(2,"election2",this.q)];
 
  
  @Input() questionnaireInfo: string;
@@ -55,7 +57,7 @@ export class ListQuestionnaireComponent implements OnInit {
     );
   }*/
 
-   public questionnaireSelected(questionnaire){		
+  /* public questionnaireSelected(questionnaire){		
 		this.currentQuestionnaire = questionnaire;
 		EmitterService.get(this.questionnaireInfo).emit(this.currentQuestionnaire);
 	}
@@ -65,5 +67,5 @@ export class ListQuestionnaireComponent implements OnInit {
 			return false;
 		}
 		return this.currentQuestionnaire.id ===  questionnaire.id ? true : false;
-	}
+	}*/
 }

@@ -9,14 +9,16 @@ import { AppComponent } from './app.component';
 import { LayoutModule } from './layout/layout.module';
 import { AppRoutesModule, routingComponents} from './shared/app.routes.module';
 import {QuestionnaireService} from './shared/services/questionnaire.service';
-import { RegistrationComponent } from './manage-personal/registration/registration.component';
+import { AddPersonnelComponent } from './manage-personnel/add-personnel/add-personnel.component';
+import { ListPersonnelComponent } from './manage-personnel/list-personnel/list-personnel.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     routingComponents,
-    RegistrationComponent
+    AddPersonnelComponent,
+    ListPersonnelComponent
     
   ],
   imports: [

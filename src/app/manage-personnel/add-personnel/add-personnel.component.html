@@ -1,0 +1,58 @@
+
+<!-- Basic legend -->
+							<form  [formGroup]="myForm" novalidate (ngSubmit)="save(myForm)" class="form-horizontal" >
+								<div class="panel panel-flat">
+									<div class="panel-heading">
+										<h5 class="panel-title">Ajouter un personnel</h5>
+										<div class="heading-elements">
+											<ul class="icons-list">
+						                		<li><a data-action="collapse"></a></li>
+						                		<li><a data-action="reload"></a></li>
+						                		<li><a data-action="close"></a></li>
+						                	</ul>
+					                	</div>
+									</div>
+
+									<div class="panel-body" >
+										<fieldset>
+         <legend class="text-semibold">Information du personnel </legend>
+								
+                      <legend class="text-semibold">
+                    
+                    						
+									<div class="media-left">
+										<img src="assets/images/placeholder.jpg" class="img-circle img-sm" alt="" >
+											<span class="text-muted">c'est l'image par defaut du nouveau personel, il peut la modifier lorsqu'il edite son profile</span>
+									</div>
+
+                    
+                    </legend>
+
+											<div class="form-group">
+												<label class="col-lg-3 control-label">Adresse mail:</label>
+												<div class="col-lg-9">
+													<input  type="text"  class="form-control" formControlName="mail" placeholder="Adresse mail" >
+													 <small *ngIf="!myForm.controls.mail.valid"  class="text-danger">
+             											         Adresse mail correcte est obligatoire.
+													</small>
+														<small >
+
+    </small>
+												</div>
+											</div>
+
+										
+
+
+										
+										</fieldset>
+
+									
+
+										<div class="text-right">
+											<button type="submit" class="btn btn-primary" [disabled]="!myForm.valid">vailder <i class="icon-arrow-right14 position-right"></i></button>
+										</div>
+									</div>
+								</div>
+							</form>
+							<!-- /basic legend -->
