@@ -8,6 +8,12 @@ import {Questionnaire} from '../../shared/models/questionnaire.model';
   styleUrls: ['./add-questionnaire.component.css']
 })
 export class AddQuestionnaireComponent implements OnInit {
+first: string ="Questionnaire";
+second: string ="Ajouter un questionnaire";
+second_url: string ="/questionnaires/add";
+second_bool:any =true;
+
+
  public myForm: FormGroup;
 
 constructor(private _fb: FormBuilder) { }

@@ -1,5 +1,19 @@
 
-<!-- Basic legend -->
+<!-- Main content -->
+			
+  
+				<!-- Page header -->
+			<app-app-header [first]="first" [second]="second" [second_bool]="second_bool" [second_url]="second_url"></app-app-header>
+				<!-- /page header -->
+
+
+				<!-- Content area -->
+	<div class="content">
+				<!-- our component html specifications -->
+				<!-- Basic legend -->
+
+					<div class="row">
+						<div class="col-md-12">
 							<form  [formGroup]="myForm" novalidate (ngSubmit)="save(myForm)" class="form-horizontal" >
 								<div class="panel panel-flat">
 									<div class="panel-heading">
@@ -160,4 +174,17 @@
 									</div>
 								</div>
 							</form>
+							</div>
+						</div>
 							<!-- /basic legend -->
+								<!-- /our component html specifications -->	
+
+				<!-- Footer -->
+				<app-app-footer></app-app-footer>
+					<!-- /footer -->
+
+				</div>
+				<!-- /content area -->
+
+		
+			<!-- /main content -->

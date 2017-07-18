@@ -1,8 +1,20 @@
-<!-- Linked lists -->
+<!-- Main content -->
+			<div class="content-wrapper">
+  
+				<!-- Page header -->
+			<app-app-header [first]="first" [second]="second" [second_bool]="second_bool" [second_url]="second_url"></app-app-header>
+				<!-- /page header -->
+
+
+				<!-- Content area -->
+<div class="content">
+				<!-- our component html specifications -->
+				
+
 					<div class="row">
 						<div class="col-md-12">
 
-							<!-- List with text -->
+						
 							<div class="panel panel-flat">
 								<div class="panel-heading">
 									<h5 class="panel-title">Liste de questionnaires <button [routerLink]="['/questionnaires/add']" type="button" class="btn btn-success btn-xs btn-icon"> <i class="glyphicon glyphicon-plus"></i></button></h5>
@@ -74,4 +86,15 @@
 							</div>
 								</div>
 							</div>
-							<!-- /daily sales -->
+						
+						<!-- /our component html specifications -->	
+
+				<!-- Footer -->
+				<app-app-footer></app-app-footer>
+					<!-- /footer -->
+
+				</div>
+				<!-- /content area -->
+
+			</div>
+			<!-- /main content -->

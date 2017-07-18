@@ -9,6 +9,10 @@ import { EmailValidators } from 'ngx-validators';
   styleUrls: ['./add-personnel.component.css']
 })
 export class AddPersonnelComponent implements OnInit {
+first: string ="Personnel";
+second: string ="Ajouter un personnel";
+second_url: string ="/personnels/add";
+second_bool:any =true;
  public myForm: FormGroup;
 
 constructor(private _fb: FormBuilder) { }

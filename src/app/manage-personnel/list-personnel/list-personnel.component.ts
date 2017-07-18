@@ -6,6 +6,10 @@ import {Personnel} from '../../shared/models/personnel.model';
   styleUrls: ['./list-personnel.component.css']
 })
 export class ListPersonnelComponent implements OnInit {
+first: string ="Personnel";
+second: string ="Liste de personnels";
+second_url: string ="/personnels";
+second_bool:any =true;
 personnels: Personnel[]=[new Personnel("lamine.nooha@gmail.com","","assets/images/placeholder.jpg"),new Personnel("lamine.nooha@gmail.com","","assets/images/placeholder.jpg")];
   constructor() { }
 

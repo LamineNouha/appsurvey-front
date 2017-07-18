@@ -14,6 +14,10 @@ import { EmitterService } from '../../shared/services/emitter.service';
 })
 export class ListQuestionnaireComponent implements OnInit {
  q:Question[];
+first: string ="Questionnaire";
+second: string ="Liste de questionnaires";
+second_url: string ="/questionnaires";
+second_bool:any =true;
 
   questionnaires: Questionnaire[]= [new Questionnaire(1,"election1",this.q),new Questionnaire(2,"election2",this.q)];
 
