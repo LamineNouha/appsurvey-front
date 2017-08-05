@@ -6,8 +6,7 @@ import { RouterModule } from '@angular/router';
 import { AppHeaderComponent } from './app-header/app-header.component';
 import { AppFooterComponent } from './app-footer/app-footer.component';
 import { AppMainNavbarComponent } from './app-main-navbar/app-main-navbar.component';
-import { AppMainNavigationComponent } from './app-main-navigation/app-main-navigation.component';
-import { AppUsermenuComponent } from './app-usermenu/app-usermenu.component';
+
 //import { FullLayoutComponent } from './full-layout.component';
 
 
@@ -21,8 +20,7 @@ import { AppUsermenuComponent } from './app-usermenu/app-usermenu.component';
     AppHeaderComponent,
     AppFooterComponent,
     AppMainNavbarComponent,
-    AppMainNavigationComponent,
-    AppUsermenuComponent,
+   
     //FullLayoutComponent
   ],
 
@@ -30,8 +28,7 @@ import { AppUsermenuComponent } from './app-usermenu/app-usermenu.component';
     AppHeaderComponent,
     AppFooterComponent,
     AppMainNavbarComponent,
-    AppMainNavigationComponent,
-    AppUsermenuComponent,
+  
     //FullLayoutComponent 
   
     ]
