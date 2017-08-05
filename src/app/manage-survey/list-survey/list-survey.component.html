@@ -1,0 +1,83 @@
+
+				<!-- our component html specifications -->
+				
+
+					<div class="row">
+						<div class="col-md-12">
+
+						
+							<div class="panel panel-flat">
+								<div class="panel-heading">
+									<h5 class="panel-title">Liste de questionnaires <button [routerLink]="['/survey/add']" type="button" class="btn btn-success btn-xs btn-icon"> <i class="glyphicon glyphicon-plus"></i></button></h5>
+									<div class="heading-elements">
+										<ul class="icons-list">
+					                		<li><a data-action="collapse"></a></li>
+					                		<li><a data-action="reload"></a></li>
+					                		<li><a data-action="close"></a></li>
+					                	</ul>
+				                	</div>
+								</div>
+
+								<div class="panel-body">
+									<div id="sales-heatmap"></div>
+								</div>
+
+								<div class="table-responsive">
+									<table class="table text-nowrap">
+										<thead>
+											<tr>
+												<th>Questionnaire</th>
+												<th>Nombre de questions</th>
+												<th>Actions</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr *ngFor="let survey of surveys">
+												<td>
+													<div class="media-left media-middle">
+														<a href="#" class="btn bg-primary-400 btn-rounded btn-icon btn-xs">
+															<span class="letter-icon"></span>
+														</a>
+													</div>
+
+													<div class="media-body">
+														<div class="media-heading">
+															<a href="#" class="letter-icon-title">{{survey.title}} </a>
+														</div>
+
+														<div class="text-muted text-size-small"><i class="icon-checkmark3 text-size-mini position-left"></i></div>
+													</div>
+												</td>
+												<td>
+													<span class="text-muted text-size-small">to calculate</span>
+												</td>
+												<td>
+													<h6 class="text-semibold no-margin">
+                                                        
+                                                        <ul class="icons-list">
+
+
+
+
+                                                <li class="text-primary-600"><a href="#"><i class="icon-pencil7"></i></a></li>
+                                                <li class="text-danger-600"><a href="#"><i class="icon-trash"></i></a></li>
+        
+                                            </ul>
+
+                                                    </h6>
+												</td>
+											</tr>
+
+										
+
+
+										</tbody>
+									</table>
+								</div>
+							</div>
+								</div>
+							</div>
+						
+						<!-- /our component html specifications -->	
+
+	

@@ -8,6 +8,7 @@ import { AppFooterComponent } from './app-footer/app-footer.component';
 import { AppMainNavbarComponent } from './app-main-navbar/app-main-navbar.component';
 import { AppMainNavigationComponent } from './app-main-navigation/app-main-navigation.component';
 import { AppUsermenuComponent } from './app-usermenu/app-usermenu.component';
+//import { FullLayoutComponent } from './full-layout.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { AppUsermenuComponent } from './app-usermenu/app-usermenu.component';
     AppFooterComponent,
     AppMainNavbarComponent,
     AppMainNavigationComponent,
-    AppUsermenuComponent
+    AppUsermenuComponent,
+    //FullLayoutComponent
   ],
 
   declarations: [ 
@@ -29,7 +31,8 @@ import { AppUsermenuComponent } from './app-usermenu/app-usermenu.component';
     AppFooterComponent,
     AppMainNavbarComponent,
     AppMainNavigationComponent,
-    AppUsermenuComponent 
+    AppUsermenuComponent,
+    //FullLayoutComponent 
   
     ]
  

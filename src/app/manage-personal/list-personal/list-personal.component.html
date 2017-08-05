@@ -1,0 +1,75 @@
+				<!-- our component html specifications -->
+				
+				<!-- Linked lists -->
+					<div class="row">
+						<div class="col-md-12">
+
+							<!-- List with text -->
+							<div class="panel panel-flat">
+								<div class="panel-heading">
+                  <h5 class="panel-title">Liste de personnels <button [routerLink]="['/personal/add']" type="button" class="btn btn-success btn-xs btn-icon"> <i class="glyphicon glyphicon-plus"></i></button></h5>
+                  
+									<div class="heading-elements">
+										<ul class="icons-list">
+					                		<li><a data-action="collapse"></a></li>
+					                		<li><a data-action="reload"></a></li>
+					                		<li><a data-action="close"></a></li>
+					                	</ul>
+				                	</div>
+								</div>
+
+
+<div class="table-responsive">
+									<table class="table text-nowrap">
+										<thead>
+											<tr>
+                        
+												<th>Personnel</th>
+											
+												<th>Actions</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr *ngFor="let personal of personals">
+												<td>
+													<div class="media-left"><img src="{{personal.image}}" class="img-circle" alt=""></div>
+
+													<div class="media-body">
+														<div class="media-heading">
+															<a href="#" class="letter-icon-title"><i class="icon-mail5 text-size-mini position-left"></i> {{personal.mail}}</a>
+														</div>
+
+														
+													</div>
+												</td>
+											
+												<td>
+													<h6 class="text-semibold no-margin">
+                                                        
+                                                        <ul class="icons-list">
+
+
+
+
+                                                <li class="text-danger-600"><a href="#"><i class="icon-trash"></i></a></li>
+        
+                                            </ul>
+
+                                                    </h6>
+												</td>
+											</tr>
+
+										
+
+
+										</tbody>
+									</table>
+								</div>
+
+					
+							</div>
+							<!-- /list with text -->
+            </div>
+					</div>
+
+						<!-- /our component html specifications -->	
