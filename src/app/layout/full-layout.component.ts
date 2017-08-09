@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Personal} from "../shared/models/personal.model";
 import {StorageService} from "../shared/services/storage.service";
 import {ActivatedRoute, NavigationStart, Router, NavigationEnd} from "@angular/router";
-import {PersonalService} from "../shared/services/Personal.service";
+import {PersonalService} from "../shared/services/personal.service";
 @Component({
   selector: 'app-full-layout',
   templateUrl: './full-layout.component.html',
@@ -11,6 +11,7 @@ import {PersonalService} from "../shared/services/Personal.service";
 export class FullLayoutComponent implements OnInit {
  personal: Personal;
   components: NavigationMain[] = [];
+ 
 
   constructor(private storageService: StorageService, private userService: PersonalService,
               public router: Router,
@@ -18,12 +19,14 @@ export class FullLayoutComponent implements OnInit {
     this.personal = <Personal>storageService.read('personal');
   }
 
-  ngOnInit() {	
+  ngOnInit() {
+    
  this.components = [
-       {
+      {
         name: "Dashboard",
         url: "/",
         icon: "icon-home4",
+      
       },
       {
         name: "Gestion de Questionnaires",
@@ -78,10 +81,13 @@ export class FullLayoutComponent implements OnInit {
   
 
   changeActiveUrl(url: string) {
+    
     console.log(url);
     this.components.forEach(
       component => {
+        console.log("name: "+component.name + " / active: "+component.active);
         component.active = "";
+      
         if (url.indexOf(component.url) !== -1) {
           component.active = "active";
         }
@@ -105,10 +111,12 @@ export class FullLayoutComponent implements OnInit {
   }
 
   goUrl(url: string) {
-    if (url) {
+    
       this.router.navigate([url]);
-    }
+    
   }
+
+  
 
 }
 

@@ -11,8 +11,10 @@ import {ReactiveFormsModule} from "@angular/forms";
 import { LayoutModule } from './layout/layout.module';
 import { FullLayoutComponent } from './layout/full-layout.component';
 import {SurveyService} from './shared/services/survey.service';
-import {PersonalService} from './shared/services/Personal.service';
+import {PersonalService} from './shared/services/personal.service';
 import {AuthService} from './shared/services/auth.service';
+import {QuestionService} from './shared/services/question.service';
+import {ResponseService} from './shared/services/response.service';
 import { AuthModule} from './login/login.module';
 import { ManagePersonalModule} from './manage-personal/manage-personal.module';
 import { ManageSurveyModule} from './manage-survey/manage-survey.module';
@@ -21,6 +23,7 @@ import {RouterModule} from '@angular/router';
 import {APP_ROUTES} from "./app.routing";
 import {LaddaModule} from "angular2-ladda";
 //import {LaddaModule} from "angular2-ladda";
+//import {BusyModule, BusyConfig} from 'angular2-busy';
 
 
 
@@ -41,11 +44,16 @@ import {LaddaModule} from "angular2-ladda";
     ManageSurveyModule,
     AuthModule,
     RouterModule.forRoot(APP_ROUTES, {useHash: true}),
-    LaddaModule
+    LaddaModule,
+     
   ],
   providers: [SurveyService,
               PersonalService,
-              AuthService
+              PersonalService,
+              AuthService,
+              QuestionService,
+              ResponseService
+              
             ],
   bootstrap: [AppComponent]
 })

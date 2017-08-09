@@ -1,66 +1,82 @@
+import {StorageService} from "app/shared/services/storage.service";
+import {GenericService} from "./generic.service";
+import {Survey} from "../models/survey.model";
+
 import {EventEmitter, Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import 'rxjs';
 import { Observable } from 'rxjs/Rx';
-import { Survey } from '../../shared/models/survey.model';
 import { Config } from '../config';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-
 @Injectable()
-export class SurveyService {
+export class SurveyService extends GenericService {
   
- private headers = new Headers({ 'Content-Type': 'application/json' });
- private _URL:string = "/questionnaires";
- private BASE_URL:string = Config.baseUrl.concat(this._URL);
-  constructor(private _http: Http) { }
 
-cerate(questionnaire :Survey){
-return this._http.post("/questionnaires", questionnaire).map(data => data.json()).toPromise()
-
-}
-
-destroy(questionnaire :Survey){
-return this._http.delete("/questionnaires/"+questionnaire.id).map(data => data.json()).toPromise()
-
-}
-
-update(questionnaire :Survey){
-return this._http.put("/questionnaires/"+questionnaire.id,questionnaire).map(data => data.json()).toPromise()
-
-
-}
-
-/*getQuestionnaires(){
-return this._http.get("/questionnaires").map(data => data.json()).toPromise()
-
-
-}*/
- /* getQuestionnaires(): Promise<Questionnaire[]> {
-    return this._http.get(this.BASE_URL)
-      .toPromise()
-      .then(response => response.json().data as Questionnaire[])
-      .catch(this.handleError);
-  }
-*/
-
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error);
-    return Promise.reject(error.message || error);
+  constructor(private http: Http, private storageService: StorageService) {
+    super();
+   
   }
 
+  getSurveyById(surveyId) {
+    this.headers.set("Authorization", "Bearer " + this.storageService.read("token"));
+    const url = Config.baseUrl + "/survey/" + surveyId;
 
-getQuestionnaires(){
-return this._http.get(this.BASE_URL)
-.map((res:Response) => res.json())
-.catch((error:any) => Observable.throw(error.json().error || 'Server error'));
-
-}
-
-
-
- /* getQuestionnaires(): Observable<any> {
-    return this._http.get(this.BASE_URL).map(res => res.json());
+    return this.http.get(url, {
+      headers: this.headers
+    })
+      .map(res => res.json())
+      .catch(this.handleErrors);
   }
-*/
+
+ getAll() {
+    this.headers.set("Authorization", "Bearer " + this.storageService.read("token"));
+    const url = Config.baseUrl + "/surveys";
+
+    return this.http.get(url, {
+      headers: this.headers
+    })
+      .map(res => res.json())
+      .catch(this.handleErrors);
+  }
+
+    deleteOne(surveyId: number) {
+    this.headers.set("Authorization", "Bearer " + this.storageService.read("token"));
+    const url = Config.baseUrl + "/surveys/" + surveyId;
+
+    return this.http.delete(url, {
+      headers: this.headers
+    })
+      .map(res => res.json())
+      .catch(this.handleErrors);
+  }
+
+  add(survey: Survey) {
+    var id;
+    
+    this.headers.set("Authorization", "Bearer " + this.storageService.read("token"));
+    const url = Config.baseUrl + "/surveys";
+    console.log(url);
+     return this.http.post(url,
+      survey, {
+        headers: this.headers
+      })
+      .map(res => res.json())
+    
+      .catch(this.handleErrors);
+
+  }
+
+addQuestion(surveyId:number, questionId:number) {
+   
+    this.headers.set("Authorization", "Bearer " + this.storageService.read("token"));
+    const url = Config.baseUrl + "/surveys/" + surveyId + "/" + questionId;
+    console.log(url);
+    return this.http.put(url, {
+      headers: this.headers
+    })
+      .map(res => res.json())
+      .catch(this.handleErrors);
+  }
+
 }

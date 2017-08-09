@@ -116,14 +116,15 @@
 								<li class="navigation-header"><span>Main</span> <i class="icon-menu" title="Main pages"></i></li>
 
 							
-                <!-- Components -->
-                <li class="{{component.active}}" *ngFor="let component of components">
-                  <a (click)="goUrl(component.url)">
+				<!-- Components -->
+				
+                <li  *ngFor="let component of components" class="">
+                  <a    (click)="goUrl(component.url)">
                     <i class="{{component.icon}}"></i><span>{{component.name}}</span>
-                  </a>
+				  </a>
+				
                   <ul *ngIf="component.childrens">
-                    <li *ngFor="let child of component.childrens"
-                        class="{{child.active}}">
+                    <li *ngFor="let child of component.childrens">
                       <a href
                          [routerLink]="[child.url]">{{child.name}}</a>
                     </li>

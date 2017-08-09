@@ -1,26 +1,26 @@
 import {StorageService} from "app/shared/services/storage.service";
 import {GenericService} from "./generic.service";
-import {Personal} from "../models/personal.model";
+import {Question} from "../models/survey.model";
 
 import {EventEmitter, Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs';
 import { Observable } from 'rxjs/Rx';
 import { Config } from '../config';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 @Injectable()
-export class PersonalService extends GenericService {
-  loggedPersonal: Personal;
+export class QuestionService extends GenericService {
+  
 
   constructor(private http: Http, private storageService: StorageService) {
     super();
-    this.loggedPersonal = <Personal> storageService.read('personal');
+   
   }
 
-  getPersonalById(personalId) {
+  getResponseById(questionId) {
     this.headers.set("Authorization", "Bearer " + this.storageService.read("token"));
-    const url = Config.baseUrl + "/personal/" + personalId;
+    const url = Config.baseUrl + "/questions/" + questionId;
 
     return this.http.get(url, {
       headers: this.headers
@@ -31,7 +31,7 @@ export class PersonalService extends GenericService {
 
  getAll() {
     this.headers.set("Authorization", "Bearer " + this.storageService.read("token"));
-    const url = Config.baseUrl + "/users/list";
+    const url = Config.baseUrl + "/questions";
 
     return this.http.get(url, {
       headers: this.headers
@@ -40,9 +40,9 @@ export class PersonalService extends GenericService {
       .catch(this.handleErrors);
   }
 
-    deleteOne(personalId: number) {
+    deleteOne(questionId: number) {
     this.headers.set("Authorization", "Bearer " + this.storageService.read("token"));
-    const url = Config.baseUrl + "/users/" + personalId;
+    const url = Config.baseUrl + "/questions/" + questionId;
 
     return this.http.delete(url, {
       headers: this.headers
@@ -51,20 +51,15 @@ export class PersonalService extends GenericService {
       .catch(this.handleErrors);
   }
 
-    add(personal: Personal) {
-    var id;
-    
+  add(question: Question) {
     this.headers.set("Authorization", "Bearer " + this.storageService.read("token"));
-    const url = Config.baseUrl + "/users/auth/signup";
-    console.log(url);
-     return this.http.post(url,
-      personal, {
+    const url = Config.baseUrl + "/questions";
+ console.log(url);
+    return this.http.post(url,
+      question, {
         headers: this.headers
       })
       .map(res => res.json())
-    
       .catch(this.handleErrors);
-
-   
   }
 }

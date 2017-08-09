@@ -1,12 +1,17 @@
 export class Question {
-  id: number;
-  id_survey: number;
+  id?: number;
+  survey: string;
   content: string;
   responses: Response[];
+
   
-constructor(a:string, r: Response[]){
+  
+
+  
+constructor(a:string, s:string){
   this.content=a;
-  this.responses=r;
+  console.log("ssssss"+s);
+  this.survey=s;
 };
   /*constructor(obj?: any) {
     this.contenu = obj && obj.contenu || null;
@@ -16,7 +21,7 @@ constructor(a:string, r: Response[]){
 }
 
 export class Survey {
-  id: number;
+  id?: number;
   title: string;
   questions: Question[];
  
@@ -35,13 +40,14 @@ this.questions=q;
 
 }
   export class Response {
-  id: number;
-  id_question: number;
+  id?: number;
+  question: string;
   choice: string;
  
   
-  constructor(t: string){
+  constructor(t: string, q: string){
 this.choice=t;
+this.question=q;
 
   };
 

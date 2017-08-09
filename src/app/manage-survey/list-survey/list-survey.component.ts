@@ -1,10 +1,12 @@
-import {Component, OnInit,OnChanges,Input} from '@angular/core';
 import {Survey, Question, Response} from '../../shared/models/survey.model';
-import {SurveyService} from '../../shared/services/survey.service';
-import {Observable} from 'rxjs/Rx';
-
-
-
+import {Component, ElementRef, OnInit, ViewChild} from "@angular/core";
+import {SurveyService} from "../../shared/services/survey.service";
+import {Personal} from '../../shared/models/personal.model';
+import {Router} from "@angular/router";
+import {Subscription} from "rxjs/Subscription";
+declare var jQuery: any;
+declare var PNotify: any;
+declare var swal: any;
 
 
 
@@ -20,54 +22,82 @@ second: string ="Liste de questionnaires";
 second_url: string ="/surveys";
 second_bool:any =true;
 
-surveys: Survey[]= [new Survey(1,"election1",this.q),new Survey(2,"election2",this.q)];
+ surveys : Array<Survey>;
+  busy: Subscription;
 
- 
- 
-  
-  constructor( private _surveyService: SurveyService) {
+  @ViewChild("DatatableBasic") dataTable: ElementRef;
+
+  constructor(private surveyService: SurveyService, private router: Router) {
 
   }
 
-  ngOnInit() {
-   //this.getQuestionnaires();
-   //this.questionnaires[0]= new Questionnaire(1,"election1",45);
-     //this.questionnaires[1]= new Questionnaire(2,"election2",55);  
-   /* this._questionnaireService.getQuestionnaires().subscribe(
-                       response => this.questionnaires = response,
-                       error=>  { alert(`Erreur de récupération des films`); }
-                    );*/
-
-                   // console.error(Object.keys(this.questionnaires).length);
+  ngOnInit(): void {
+    this.loadAllSurveys();
   }
 
-/*getQuestionnaires(): void {
-    this._questionnaireService.getQuestionnaires().then((questionnaires) => {
-      this.questionnaires = questionnaires;
-      localStorage.setItem('questionnaires', JSON.stringify(questionnaires));
+  loadAllSurveys() {
+    const baseContext = this;
+    this.busy = this.surveyService.getAll().subscribe(data => {
+      this.surveys = data;
+      setTimeout(function () {
+        baseContext.initializeListSurveyDataTables();
+      }, 100);
+    }, error => {
+
     });
-  }*/
+  }
 
+  initializeListSurveyDataTables() {
+    // Basic datatable
+    const tableListStation = jQuery('.datatable-basic');
+    tableListStation.DataTable();
+  }
+/*
+  editBanque(index, banqueId) {
+    this.banqueService.currentBanque = this.banques[index];
+    this.router.navigate(['banque/' + banqueId + "/edit"]);
+  }
 
+  validerBanque(index, banqueId) {
+    this.banqueService.currentBanque = this.banques[index];
+    this.router.navigate(['banque/' + banqueId + "/edit"]);
+  }
+*/
+  deleteSurvey(index, surveyId) {
+    const baseContext = this;
+    swal({
+        title: "Vous êtes sûr?",
+        text: "Ce questionnaire va être supprimé définitivement!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#EF5350",
+        confirmButtonText: "Oui, supprimer!",
+        cancelButtonText: "Non, annuler!",
+        closeOnConfirm: false,
+        closeOnCancel: false
+      }).then (function () {
+        
+          baseContext.busy = baseContext.surveyService.deleteOne(surveyId).subscribe(data => {
+            baseContext.surveys.splice(index, 1);
+            swal({
+              title: "Supprimé!",
+              text: "Ce questionnaire est supprimé.",
+              confirmButtonColor: "#66BB6A",
+              type: "success"
+            });
+          }, error => {
 
-
-    /*getQuestionnaires() {
-    this._questionnaireService.getQuestionnaires().subscribe(
-      data => this.questionnaires = data,
-      error => console.log(error),
-      () => this.isLoading = false
-    );
-  }*/
-
-  /* public questionnaireSelected(questionnaire){		
-		this.currentQuestionnaire = questionnaire;
-		EmitterService.get(this.questionnaireInfo).emit(this.currentQuestionnaire);
-	}
-
-  	public isSelected(questionnaire): boolean {
-		if(!this.currentQuestionnaire) {
-			return false;
-		}
-		return this.currentQuestionnaire.id ===  questionnaire.id ? true : false;
-	}*/
+          });
+        }, function(dismiss){
+          if (dismiss === 'cancel') {
+     
+          swal({
+            title: "Annulé",
+            text: "Vous avez annuler cette action",
+            confirmButtonColor: "#2196F3",
+            type: "error"
+          });
+        }
+      });
+         }
 }

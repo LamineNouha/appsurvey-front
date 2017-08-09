@@ -23,7 +23,7 @@
 											<div class="form-group">
 												<label class="col-lg-3 control-label">Titre du questionnaire:</label>
 												<div class="col-lg-9">
-													<input  type="text" name="title" class="form-control" formControlName="titre" placeholder="Titre du questionnaire" >
+													<input  type="text" name="title" class="form-control" formControlName="title" placeholder="Titre du questionnaire" >
 													 <small *ngIf="!myForm.controls.title.valid" class="text-danger">
              											 Titre est obligatoire (minimum 5 charactères).
             										</small>
@@ -82,7 +82,7 @@
 											<div class="form-group">
 												<label class="col-lg-3 control-label">Titre de la question:</label>
 												<div class="col-lg-9">
-													<input type="text" class="form-control" placeholder="Titre de la question" formControlName="contenu">
+													<input type="text" class="form-control" placeholder="Titre de la question" formControlName="content">
 													<small [hidden]="myForm.controls.questions.controls[i].controls.content.valid" class="text-danger">
                    										 La question est obligatoire
                										 </small>
@@ -101,10 +101,10 @@
         <div class="control-group" id="fields">
             <label class="control-label" for="field1">Les éléments de réponse:</label>
             <div class="controls" > 
-                <form formArrayName="responses" role="form" autocomplete="off" id="formq1" >
+                <div formArrayName="responses" role="form" autocomplete="off" id="formq1" >
                     <div class="entry input-group col-xs-3" id="entryq1r1" *ngFor="let responses of myForm.controls.questions.controls[i].controls.responses.controls; let j=index" [formGroupName]="j" >
-						<input id="q1r1"  class="form-control" formControlName="choix" type="text" placeholder="Réponse{{j+1}} " />
-				 <small [hidden]="myForm.controls.questions.controls[i].controls.responses.controls[j].controls.choix.valid" class="text-danger">
+						<input id="q1r1"  class="form-control" formControlName="choice" type="text" placeholder="Réponse{{j+1}} " />
+				 <small [hidden]="myForm.controls.questions.controls[i].controls.responses.controls[j].controls.choice.valid" class="text-danger">
             La réponse est obligatoire
                 </small>
                         <span class="input-group-btn">
@@ -118,7 +118,7 @@
 				
                     </div>
                     
-                </form>
+                </div>
             <br>
             <small>Cliquer + pour ajouter un autre choix de réponse</small>
             </div>
