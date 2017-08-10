@@ -18,7 +18,7 @@ export class ResponseService extends GenericService {
    
   }
 
-  getResponseById(responseId) {
+  /*getResponseById(responseId) {
     this.headers.set("Authorization", "Bearer " + this.storageService.read("token"));
     const url = Config.baseUrl + "/responses/" + responseId;
 
@@ -27,7 +27,7 @@ export class ResponseService extends GenericService {
     })
       .map(res => res.json())
       .catch(this.handleErrors);
-  }
+  }*/
 
  getAll() {
     this.headers.set("Authorization", "Bearer " + this.storageService.read("token"));

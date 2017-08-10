@@ -40,12 +40,10 @@ constructor(private _fb: FormBuilder,private personalService: PersonalService,pu
 
 save(myForm: FormGroup) {
   
-    var id_personal;
-    var s_questions=Array<object>();
    this.personal= myForm.value;
    console.log(JSON.stringify(this.personal) );
     
-   //add survey 
+   //add personal 
    this.busy = this.personalService.add(this.personal)
         .subscribe(
           (data) => {
@@ -66,10 +64,7 @@ save(myForm: FormGroup) {
         }, function(dismiss){
           
       });;
-            /*console.log(data);
-            //getting the id of the added survey
-             id_personal= data._id;
-             console.log("id of added survey: "+id_personal);*/
+            
 
           }
         );
