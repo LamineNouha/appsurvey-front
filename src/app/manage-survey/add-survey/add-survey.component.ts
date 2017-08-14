@@ -47,7 +47,7 @@ constructor(private _fb: FormBuilder,private surveyService: SurveyService,privat
 }
 
    ngOnInit() {
-
+   
 
  this.myForm= this._fb.group([]);
  console.log("fo4m: "+JSON.stringify(this.myForm.value));
@@ -197,6 +197,7 @@ initQuestion(nbq:number) {
         control1.removeAt(j);
     }
 save(myForm: FormGroup) {
+    const baseContext = this;
     if(!this.isEditAction){
   //add
   console.log( "*********submitedFormGroup******** "+ JSON.stringify(myForm.value));
@@ -215,7 +216,14 @@ save(myForm: FormGroup) {
               text: 'Survey ajouté avec succés',
               confirmButtonColor: "#66BB6A",
               type: "success"
-            });
+            }).then (function () {
+               
+                baseContext.router.navigate(["/survey/list"]);
+                          
+                     
+                      }, function(dismiss){
+                        
+                    });
             console.log(data);
             //getting the id of the added survey
              id_survey= data._id;
@@ -318,13 +326,15 @@ else{
           console.log("swal");
           swal({
             title: "Succés!",
-            text: 'Survey ajouté avec succés',
+            text: 'Survey edité avec succés',
             confirmButtonColor: "#66BB6A",
             type: "success"
           });
           console.log(data);
           //getting the id of the added survey
            id_survey= data._id;
+           //deleting current survey from storage
+           //this.storageService.remove('currentSurvey');
            console.log("id of added survey: "+id_survey);
 
 

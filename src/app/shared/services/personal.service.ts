@@ -40,14 +40,15 @@ getPersonalById(personalId) {
       .catch(this.handleErrors);
   }
 
-    deleteOne(personalId: number) {
+    deleteOne(personalId) {
     this.headers.set("Authorization", "Bearer " + this.storageService.read("token"));
     const url = Config.baseUrl + "/users/" + personalId;
 
     return this.http.delete(url, {
       headers: this.headers
     })
-      .map(res => res.json())
+      .map(res => res.json()
+    )
       .catch(this.handleErrors);
   }
 

@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import { ListSurveyComponent } from './list-survey/list-survey.component';
 import { AddSurveyComponent } from './add-survey/add-survey.component';
+import { DetailSurveyComponent } from './detail-survey/detail-survey.component';
 import {SurveyService} from '../shared/services/survey.service';
 
 
@@ -24,7 +25,10 @@ export const Survey_ROUTES: Routes = [
         path: ':surveyId/edit',
         component: AddSurveyComponent
       },
-   
+      {
+        path: ':surveyId/detail',
+        component: DetailSurveyComponent
+      },
     ]
   }
 ];

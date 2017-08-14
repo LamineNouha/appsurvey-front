@@ -4,6 +4,7 @@ import {SurveyService} from "../../shared/services/survey.service";
 import {StorageService} from "../../shared/services/storage.service";
 import {Personal} from '../../shared/models/personal.model';
 import {Router} from "@angular/router";
+import {Http} from '@angular/http';
 import {Subscription} from "rxjs/Subscription";
 declare var jQuery: any;
 declare var PNotify: any;
@@ -28,12 +29,16 @@ second_bool:any =true;
 
   @ViewChild("DatatableBasic") dataTable: ElementRef;
 
-  constructor(private surveyService: SurveyService, private router: Router,private storageService: StorageService) {
-
+  constructor(private surveyService: SurveyService, private router: Router,private storageService: StorageService, private http: Http) {
+  
   }
 
   ngOnInit(): void {
+    //removing currentSurvey from strorage to avoid problems
+    this.storageService.remove('currentSurvey');
+    
     this.loadAllSurveys();
+    this.busy = this.http.get('...').subscribe();
   }
 
   loadAllSurveys() {
@@ -50,11 +55,9 @@ second_bool:any =true;
       
        for (var j = 0; j < data[i].questions.length; j++) {
         this.surveys[i].questions[j]=data[i].questions[j];
-        //this.surveys[i].questions[j].responses=data[i].questions[j].responses;
+       
        }
 
-//console.log("oneSurvey+++"+JSON.stringify( this.surveys[i]));
-//console.log("oneSurvey+++nbqsts "+this.surveys[i].questions.length);
       }
     }, error => {
 
@@ -72,6 +75,11 @@ second_bool:any =true;
   editSurvey(index, surveyId) {
     this.storageService.write('currentSurvey', this.surveys[index]);
     this.router.navigate(['survey/' + surveyId + "/edit"]);
+  }
+
+  detailSurvey(index, surveyId) {
+    this.storageService.write('currentSurvey', this.surveys[index]);
+    this.router.navigate(['survey/' + surveyId + "/detail"]);
   }
 
   deleteSurvey(index, surveyId) {

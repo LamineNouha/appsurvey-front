@@ -1,0 +1,168 @@
+				<!-- our component html specifications -->
+				<!-- Basic legend -->
+
+				<div class="row">
+					<div class="col-md-12">
+						<form  [formGroup]="myForm" novalidate (ngSubmit)="save(myForm)" class="form-horizontal" >
+							<div class="panel panel-flat">
+								<div class="panel-heading">
+									<h5 class="panel-title">Detail questionnaire  <button (click)="editSurvey()" type="button" class="btn btn-success btn-xs btn-icon"> <i class="icon-pencil7"></i></button></h5>
+									<div class="heading-elements">
+										<ul class="icons-list">
+											<li><a data-action="collapse"></a></li>
+											<li><a data-action="reload"></a></li>
+											<li><a data-action="close"></a></li>
+										</ul>
+									</div>
+								</div>
+
+								<div class="panel-body" >
+									<fieldset>
+										<legend class="text-semibold">Le questionnaire</legend>
+
+										<div class="form-group">
+											<label class="col-lg-3 control-label">Titre du questionnaire:</label>
+											<div class="col-lg-9">
+												<input  type="text" name="title" class="form-control" formControlName="title" placeholder="Titre du questionnaire"  readonly>
+												 
+												<input  type="hidden" name="_id" class="form-control" formControlName="_id" >
+												
+												<small *ngIf="!myForm.controls.title.valid" class="text-danger">
+													  Titre est obligatoire (minimum 5 charactères).
+												</small>
+											</div>
+										</div>
+
+									
+
+
+									
+									</fieldset>
+
+									<fieldset id="quest-to-add">
+										
+
+					  <legend class="text-semibold">
+											<i class="icon-file-text2 position-left"></i>
+											Les questions 
+											
+										</legend>
+									
+				  
+				  <div formArrayName="questions">
+
+<!-- Accordion -->
+						<div *ngFor="let questions of myForm.controls.questions.controls; let i=index;" class="panel-group panel-group-control" id="collapsible-target">
+							<div class="panel panel-white" id="q1">
+								<div class="panel-heading">
+
+
+									
+									<h6 class="panel-title">
+										<a data-toggle="collapse" data-parent="#collapsible-target" href="#{{i + 1}}">Question {{i + 1}}
+											</a>
+
+
+
+
+
+
+										
+										
+											</h6>
+
+										
+								</div>
+								<div id="{{i + 1}}" class="panel-collapse collapse in">
+									<div class="panel-body" [formGroupName]="i">
+
+										<fieldset>
+		
+
+										<div class="form-group">
+											<label class="col-lg-3 control-label">Titre de la question:</label>
+											<div class="col-lg-9">
+												<input type="text" class="form-control" placeholder="Titre de la question" formControlName="content" readonly>
+
+						
+
+												<small [hidden]="myForm.controls.questions.controls[i].controls.content.valid" class="text-danger">
+														La question est obligatoire
+													</small>
+											</div>
+										</div>
+
+									
+
+
+									
+									</fieldset>
+										
+
+		  <div class="container" >
+    <div class="row" >
+	<div class="control-group" id="fields">
+		<label class="control-label" for="field1">Les éléments de réponse:</label>
+		<div class="controls" > 
+			<div formArrayName="responses" role="form" autocomplete="off" id="formq1" >
+				<div class="entry input-group col-xs-3" id="entryq1r1" *ngFor="let responses of myForm.controls.questions.controls[i].controls.responses.controls; let j=index" [formGroupName]="j" >
+					<input id="q1r1"  class="form-control" formControlName="choice" type="text" placeholder="Réponse{{j+1}} " readonly/>
+			 <small [hidden]="myForm.controls.questions.controls[i].controls.responses.controls[j].controls.choice.valid" class="text-danger">
+		La réponse est obligatoire
+			</small>
+				    <span class="input-group-btn">
+						
+					</span>
+			
+			
+				</div>
+				
+			</div>
+		<br>
+		
+		</div>
+	</div>
+    </div>
+
+
+									</div>
+								</div>
+							</div>
+
+
+
+  
+
+
+
+						
+
+						</div>
+						</div>
+
+
+		  <!--fin accordition-->
+				  </div>         		
+
+
+						
+
+						
+
+								
+
+						 
+
+							
+									</fieldset>
+
+									<div class="text-right">
+										<button type="submit" class="btn btn-primary" [disabled]="!myForm.valid">vailder <i class="icon-arrow-right14 position-right"></i></button>
+									</div>
+								</div>
+							</div>
+						</form>
+						</div>
+					</div>
+						<!-- /basic legend -->
+							<!-- /our component html specifications -->	

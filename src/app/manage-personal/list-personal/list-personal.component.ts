@@ -30,7 +30,7 @@ second_bool:any =true;
   @ViewChild("DatatableBasic") dataTable: ElementRef;
 
   constructor(private personalService: PersonalService, private router: Router, private http: Http) {
-  this.busy = this.http.get('...').subscribe();
+  //this.busy = this.http.get('...').subscribe();
   }
 
   ngOnInit(): void {
@@ -55,6 +55,7 @@ second_bool:any =true;
     const tableListStation = jQuery('.datatable-basic');
     tableListStation.DataTable();
   }
+
 
   deletePersonal(index, personalId) {
     const baseContext = this;
@@ -86,7 +87,7 @@ second_bool:any =true;
      
           swal({
             title: "Annulé",
-            text: "Vous avez annuler cette action",
+            text: "Vous avez annulé cette action",
             confirmButtonColor: "#2196F3",
             type: "error"
           });

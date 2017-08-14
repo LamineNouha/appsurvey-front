@@ -5,7 +5,7 @@ import {PersonalService} from "../../shared/services/personal.service";
 import { EmailValidators } from 'ngx-validators';
 import {Subscription} from "rxjs/Subscription";
 import {Http} from '@angular/http';
-import {Router} from "@angular/router";
+import {Router, ActivatedRoute} from "@angular/router";
 import {BusyModule} from 'angular2-busy';
 declare let swal: any;
 
@@ -25,11 +25,13 @@ second_bool:any =true;
  busy: Subscription;
  public myForm: FormGroup;
 
-constructor(private _fb: FormBuilder,private personalService: PersonalService,public router: Router, private http: Http) { 
+constructor(private _fb: FormBuilder,private personalService: PersonalService,private route: ActivatedRoute,
+  private router: Router, private http: Http) { 
       this.busy = this.http.get('...').subscribe();
 }
  email = new FormControl('', [Validators.compose([EmailValidators.simple]),Validators.required]);
    ngOnInit() {
+    const baseContext = this;
         this.myForm = this._fb.group({
            email: this.email,
             
@@ -39,7 +41,7 @@ constructor(private _fb: FormBuilder,private personalService: PersonalService,pu
  
 
 save(myForm: FormGroup) {
-  
+  const baseContext = this;
    this.personal= myForm.value;
    console.log(JSON.stringify(this.personal) );
     
@@ -58,12 +60,13 @@ save(myForm: FormGroup) {
             
            
 }).then (function () {
-         this.router.navigate(['/personal/list']);
+
+  baseContext.router.navigate(["/personal/list"]);
             
        
         }, function(dismiss){
           
-      });;
+      });
             
 
           }

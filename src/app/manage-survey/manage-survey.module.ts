@@ -1,6 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ListSurveyComponent } from './list-survey/list-survey.component';
 import { AddSurveyComponent } from './add-survey/add-survey.component';
+import { DetailSurveyComponent } from './detail-survey/detail-survey.component';
 import {SharedModule} from "../shared/shared.module";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {BusyModule} from 'angular2-busy';
@@ -15,7 +16,12 @@ import { Survey_ROUTES } from './manage-survey.routing';
   ],
   declarations: [
     ListSurveyComponent, 
-    AddSurveyComponent],
-   schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    AddSurveyComponent,
+    DetailSurveyComponent,
+  ],
+    
+   schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  
+  
 })
 export class ManageSurveyModule { }

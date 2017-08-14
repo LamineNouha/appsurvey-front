@@ -67,16 +67,6 @@ export class SurveyService extends GenericService {
 
   }
 
-addQuestion(surveyId:number, questionId:number) {
-   
-    this.headers.set("Authorization", "Bearer " + this.storageService.read("token"));
-    const url = Config.baseUrl + "/surveys/" + surveyId + "/" + questionId;
-    console.log(url);
-    return this.http.put(url, {
-      headers: this.headers
-    })
-      .map(res => res.json())
-      .catch(this.handleErrors);
-  }
+
 
 }
