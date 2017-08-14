@@ -55,17 +55,7 @@ second_bool:any =true;
     const tableListStation = jQuery('.datatable-basic');
     tableListStation.DataTable();
   }
-/*
-  editBanque(index, banqueId) {
-    this.banqueService.currentBanque = this.banques[index];
-    this.router.navigate(['banque/' + banqueId + "/edit"]);
-  }
 
-  validerBanque(index, banqueId) {
-    this.banqueService.currentBanque = this.banques[index];
-    this.router.navigate(['banque/' + banqueId + "/edit"]);
-  }
-*/
   deletePersonal(index, personalId) {
     const baseContext = this;
     swal({

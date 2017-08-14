@@ -20,7 +20,7 @@ export class SurveyService extends GenericService {
 
   getSurveyById(surveyId) {
     this.headers.set("Authorization", "Bearer " + this.storageService.read("token"));
-    const url = Config.baseUrl + "/survey/" + surveyId;
+    const url = Config.baseUrl + "/surveys/" + surveyId;
 
     return this.http.get(url, {
       headers: this.headers
@@ -40,7 +40,7 @@ export class SurveyService extends GenericService {
       .catch(this.handleErrors);
   }
 
-    deleteOne(surveyId: number) {
+    deleteOne(surveyId) {
     this.headers.set("Authorization", "Bearer " + this.storageService.read("token"));
     const url = Config.baseUrl + "/surveys/" + surveyId;
 

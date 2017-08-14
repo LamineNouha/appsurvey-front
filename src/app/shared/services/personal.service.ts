@@ -18,7 +18,7 @@ export class PersonalService extends GenericService {
     this.loggedPersonal = <Personal> storageService.read('personal');
   }
 
-  getPersonalById(personalId) {
+getPersonalById(personalId) {
     this.headers.set("Authorization", "Bearer " + this.storageService.read("token"));
     const url = Config.baseUrl + "/personal/" + personalId;
 

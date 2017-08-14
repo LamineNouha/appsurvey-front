@@ -19,6 +19,11 @@ export const Survey_ROUTES: Routes = [
         path: 'add',
         component: AddSurveyComponent
       },
+
+       {
+        path: ':surveyId/edit',
+        component: AddSurveyComponent
+      },
    
     ]
   }

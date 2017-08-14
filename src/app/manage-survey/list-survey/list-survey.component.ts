@@ -1,6 +1,7 @@
 import {Survey, Question, Response} from '../../shared/models/survey.model';
 import {Component, ElementRef, OnInit, ViewChild} from "@angular/core";
 import {SurveyService} from "../../shared/services/survey.service";
+import {StorageService} from "../../shared/services/storage.service";
 import {Personal} from '../../shared/models/personal.model';
 import {Router} from "@angular/router";
 import {Subscription} from "rxjs/Subscription";
@@ -27,7 +28,7 @@ second_bool:any =true;
 
   @ViewChild("DatatableBasic") dataTable: ElementRef;
 
-  constructor(private surveyService: SurveyService, private router: Router) {
+  constructor(private surveyService: SurveyService, private router: Router,private storageService: StorageService) {
 
   }
 
@@ -39,12 +40,27 @@ second_bool:any =true;
     const baseContext = this;
     this.busy = this.surveyService.getAll().subscribe(data => {
       this.surveys = data;
+      console.log("survey "+JSON.stringify(data));
       setTimeout(function () {
         baseContext.initializeListSurveyDataTables();
       }, 100);
+
+
+      for (var i = 0; i < data.length; i++) {
+      
+       for (var j = 0; j < data[i].questions.length; j++) {
+        this.surveys[i].questions[j]=data[i].questions[j];
+        //this.surveys[i].questions[j].responses=data[i].questions[j].responses;
+       }
+
+//console.log("oneSurvey+++"+JSON.stringify( this.surveys[i]));
+//console.log("oneSurvey+++nbqsts "+this.surveys[i].questions.length);
+      }
     }, error => {
 
     });
+
+      
   }
 
   initializeListSurveyDataTables() {
@@ -52,17 +68,12 @@ second_bool:any =true;
     const tableListStation = jQuery('.datatable-basic');
     tableListStation.DataTable();
   }
-/*
-  editBanque(index, banqueId) {
-    this.banqueService.currentBanque = this.banques[index];
-    this.router.navigate(['banque/' + banqueId + "/edit"]);
+
+  editSurvey(index, surveyId) {
+    this.storageService.write('currentSurvey', this.surveys[index]);
+    this.router.navigate(['survey/' + surveyId + "/edit"]);
   }
 
-  validerBanque(index, banqueId) {
-    this.banqueService.currentBanque = this.banques[index];
-    this.router.navigate(['banque/' + banqueId + "/edit"]);
-  }
-*/
   deleteSurvey(index, surveyId) {
     const baseContext = this;
     swal({

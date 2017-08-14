@@ -1,12 +1,11 @@
 export class Question {
-  id?: number;
+  id?: string;
   survey: string;
   content: string;
   responses: Response[];
 
   
   
-
   
 constructor(a:string, s:string){
   this.content=a;
@@ -21,14 +20,14 @@ constructor(a:string, s:string){
 }
 
 export class Survey {
-  id?: number;
+  id?: string;
   title: string;
   questions: Question[];
  
-constructor(a:number, t: string, q: Question[]){
+constructor(a:string, t: string){
 this.id=a;
 this.title=t;
-this.questions=q;
+
 
   };
 
@@ -40,7 +39,7 @@ this.questions=q;
 
 }
   export class Response {
-  id?: number;
+  id?: string;
   question: string;
   choice: string;
  

@@ -6,7 +6,7 @@
 							<form  [formGroup]="myForm" novalidate (ngSubmit)="save(myForm)" class="form-horizontal" >
 								<div class="panel panel-flat">
 									<div class="panel-heading">
-										<h5 class="panel-title">Ajouter un questionnaire</h5>
+										<h5 class="panel-title">{{isEditAction?'Editer questionnaire':'Ajouter questionnaire'}}</h5>
 										<div class="heading-elements">
 											<ul class="icons-list">
 						                		<li><a data-action="collapse"></a></li>
@@ -23,8 +23,11 @@
 											<div class="form-group">
 												<label class="col-lg-3 control-label">Titre du questionnaire:</label>
 												<div class="col-lg-9">
-													<input  type="text" name="title" class="form-control" formControlName="title" placeholder="Titre du questionnaire" >
-													 <small *ngIf="!myForm.controls.title.valid" class="text-danger">
+													<input  type="text" name="title" class="form-control" formControlName="title" placeholder="Titre du questionnaire"  >
+													 
+													<input  type="hidden" name="_id" class="form-control" formControlName="_id" >
+													
+													<small *ngIf="!myForm.controls.title.valid" class="text-danger">
              											 Titre est obligatoire (minimum 5 charactères).
             										</small>
 												</div>
@@ -82,7 +85,10 @@
 											<div class="form-group">
 												<label class="col-lg-3 control-label">Titre de la question:</label>
 												<div class="col-lg-9">
-													<input type="text" class="form-control" placeholder="Titre de la question" formControlName="content">
+													<input type="text" class="form-control" placeholder="Titre de la question" formControlName="content" >
+
+							
+
 													<small [hidden]="myForm.controls.questions.controls[i].controls.content.valid" class="text-danger">
                    										 La question est obligatoire
                										 </small>
@@ -108,7 +114,7 @@
             La réponse est obligatoire
                 </small>
                         <span class="input-group-btn">
-                            <button class="btn btn-success" type="button" (click)="addResponse(i)">
+                            <button class="btn btn-success" type="button" (click)="addResponse(i,j+1)">
                                 <span class="glyphicon glyphicon-plus"></span>
                             </button> <button class="btn btn-danger" type="button" *ngIf="myForm.controls.questions.controls[i].controls.responses.controls.length > 1" (click)="removeResponse(i,j)">
                                 <span class="glyphicon glyphicon-plus"></span>

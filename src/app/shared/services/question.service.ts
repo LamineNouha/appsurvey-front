@@ -18,7 +18,7 @@ export class QuestionService extends GenericService {
    
   }
 
-  getResponseById(questionId) {
+  getQuestionById(questionId) {
     this.headers.set("Authorization", "Bearer " + this.storageService.read("token"));
     const url = Config.baseUrl + "/questions/" + questionId;
 
