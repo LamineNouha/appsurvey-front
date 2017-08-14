@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-app-header',
@@ -9,12 +10,16 @@ export class AppHeaderComponent implements OnInit {
 first_active:string="active";
 @Input() first:string;
 @Input()  second:string;
-@Input()  second_url:string;
+@Input()  first_url:string;
 @Input()  second_bool:any;
-  constructor() { }
+  constructor(private router: Router,) { }
 
   ngOnInit() {
 
   }
-
+  goUrl(url: string) {
+   
+      this.router.navigate([url]);
+    
+  }
 }

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import {Personal} from "../shared/models/personal.model";
 import {StorageService} from "../shared/services/storage.service";
-import {ActivatedRoute, NavigationStart, Router, NavigationEnd} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {PersonalService} from "../shared/services/personal.service";
 @Component({
   selector: 'app-full-layout',
@@ -9,15 +9,82 @@ import {PersonalService} from "../shared/services/personal.service";
   styleUrls: []    
 })
 export class FullLayoutComponent implements OnInit {
- personal: Personal;
-  components: NavigationMain[] = [];
+personal: Personal;
+components: NavigationMain[] = [];
+
+first: string;
+second: string;
+first_url: string;
+second_bool:any =true;
  
 
   constructor(private storageService: StorageService, private userService: PersonalService,
-              public router: Router,
+              private router: Router,
               private route: ActivatedRoute) {
     this.personal = <Personal>storageService.read('personal');
+    this.router.events.subscribe((val) => {
+      var url_components :string []=this.router.url.split('/');
+      console.log("url components: "+url_components.length);
+      if(url_components.length==2){
+        
+              this.first="Dashbord";
+              this.second_bool=false;
+              this.first_url="/";
+              this.second="";
+            }
+            else{
+      if(url_components[1]=="survey"){
+  
+        this.first="Qestionnaires";
+        this.first_url='/survey/list';
+        this.second_bool=false;
+        if(url_components.length==4){
+  this.second_bool=true;
+  if(url_components[3]=="edit"){
+    this.second="Edit";
+      }
+      else{
+        this.second="Detail";
+      }
+      
+    }
+  else{
+    this.second_bool=true;
+    if(url_components[2]=="add"){
+      this.second="Ajout";
+        }
+        if(url_components[2]=="list"){
+          this.second_bool=false;
+          this.second="Liste";
+            }
+  
+  }}
+    if(url_components[1]=="personal"){
+      
+            this.first="Personnels";
+            this.first_url="/personal/list";
+            this.second_bool=false;
+            if(url_components.length==3){
+            this.second_bool=true;
+      if(url_components[2]=="add"){
+        this.second="Ajout";
+          }
+          if(url_components[2]=="list"){
+            this.second_bool=false;
+            this.second="Liste";
+              }
+         
+          
+        }
   }
+  } 
+    }
+
+
+    
+  )
+  }
+  
 
   ngOnInit() {
     
