@@ -27,6 +27,21 @@ export class AuthService extends GenericService {
       .catch(this.handleErrors);
   }
 
+
+  register(credentials: Credentials) {
+    const url = Config.baseUrl + '/users/auth/signup';
+    console.log("email" , JSON.stringify(credentials));
+    return this.http.post(url, JSON.stringify({
+      "email": credentials.email,
+      "password": credentials.password
+    }), {
+      headers: this.headers
+    })
+      .map(res => res.json())
+      .catch(this.handleErrors);
+  }
+
+
   isLoggedIn() {
     return this.stoarageService.read("token") != null;
   }

@@ -1,14 +1,16 @@
 export class Personal {
-  id: number;
+  id: string;
   email: string;
   password: string;
   image: string;
+  user: string;
   
-constructor(mail:string, 
-  code:string, image:string){
+constructor(id: string, mail:string, user:string,)
+  {
+  this.id= id;
   this.email=mail;
-  this.password=code;
-  this.image=image;
+  this.user=user;
+  
 };
   /*constructor(obj?: any) {
     this.mail = obj && obj.mail || null;

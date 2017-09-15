@@ -3,6 +3,7 @@ export class Question {
   survey: string;
   content: string;
   responses: Response[];
+  
 
   
   
@@ -23,10 +24,12 @@ export class Survey {
   id?: string;
   title: string;
   questions: Question[];
+  user: string;
  
-constructor(a:string, t: string){
+constructor(a:string, t: string, user: string){
 this.id=a;
 this.title=t;
+this.user = user;
 
 
   };

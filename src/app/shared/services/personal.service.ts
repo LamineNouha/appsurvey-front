@@ -18,9 +18,9 @@ export class PersonalService extends GenericService {
     this.loggedPersonal = <Personal> storageService.read('personal');
   }
 
-getPersonalById(personalId) {
+/*getPersonalById(personalId) {
     this.headers.set("Authorization", "Bearer " + this.storageService.read("token"));
-    const url = Config.baseUrl + "/personal/" + personalId;
+    const url = Config.baseUrl + "/personals/" + personalId;
 
     return this.http.get(url, {
       headers: this.headers
@@ -28,10 +28,14 @@ getPersonalById(personalId) {
       .map(res => res.json())
       .catch(this.handleErrors);
   }
+  */
 
- getAll() {
+ getAll(userId: string) {
     this.headers.set("Authorization", "Bearer " + this.storageService.read("token"));
-    const url = Config.baseUrl + "/users/list";
+    const url = Config.baseUrl + "/users/" + userId + "/listPer";
+
+
+    
 
     return this.http.get(url, {
       headers: this.headers
@@ -56,7 +60,7 @@ getPersonalById(personalId) {
     var id;
     
     this.headers.set("Authorization", "Bearer " + this.storageService.read("token"));
-    const url = Config.baseUrl + "/users/auth/signup";
+    const url = Config.baseUrl + "/users/auth/signupPer";
     console.log(url);
      return this.http.post(url,
       personal, {

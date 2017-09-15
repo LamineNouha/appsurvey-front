@@ -5,6 +5,8 @@ import {Router} from "@angular/router";
 import {Subscription} from "rxjs/Subscription";
 import {Http} from '@angular/http';
 import {BusyModule} from 'angular2-busy';
+import {StorageService} from "../../shared/services/storage.service";
+import {User} from "../../shared/models/user.model";
 declare let swal: any;
 
 declare var jQuery: any;
@@ -16,10 +18,7 @@ declare var PNotify: any;
   styleUrls: []
 })
 export class ListPersonalComponent implements OnInit {
-first: string ="Personnel";
-second: string ="Liste de personnels";
-second_url: string ="/personals";
-second_bool:any =true;
+user: User;
 
 
 
@@ -29,32 +28,28 @@ second_bool:any =true;
 
   @ViewChild("DatatableBasic") dataTable: ElementRef;
 
-  constructor(private personalService: PersonalService, private router: Router, private http: Http) {
-  //this.busy = this.http.get('...').subscribe();
+  constructor(private storageService: StorageService, private personalService: PersonalService, private router: Router, private http: Http) {
+  this.busy = this.http.get('...').subscribe();
+
+  this.user= <User>storageService.read('user');
   }
 
   ngOnInit(): void {
     this.loadAllPersonals();
-    this.busy = this.http.get('...').subscribe();
+   
   }
 
   loadAllPersonals() {
     const baseContext = this;
-    this.busy = this.personalService.getAll().subscribe(data => {
+    this.personalService.getAll(this.user._id).subscribe(data => {
       this.personals = data;
-      setTimeout(function () {
-        baseContext.initializeListPersonalDataTables();
-      }, 100);
+    
     }, error => {
 
     });
   }
 
-  initializeListPersonalDataTables() {
-    // Basic datatable
-    const tableListStation = jQuery('.datatable-basic');
-    tableListStation.DataTable();
-  }
+ 
 
 
   deletePersonal(index, personalId) {

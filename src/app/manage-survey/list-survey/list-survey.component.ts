@@ -1,11 +1,12 @@
 import {Survey, Question, Response} from '../../shared/models/survey.model';
 import {Component, ElementRef, OnInit, ViewChild} from "@angular/core";
 import {SurveyService} from "../../shared/services/survey.service";
-import {StorageService} from "../../shared/services/storage.service";
 import {Personal} from '../../shared/models/personal.model';
 import {Router} from "@angular/router";
 import {Http} from '@angular/http';
 import {Subscription} from "rxjs/Subscription";
+import {StorageService} from "../../shared/services/storage.service";
+import {User} from "../../shared/models/user.model";
 declare var jQuery: any;
 declare var PNotify: any;
 declare var swal: any;
@@ -19,10 +20,7 @@ declare var swal: any;
 })
 export class ListSurveyComponent implements OnInit {
  q:Question[];
-first: string ="Questionnaire";
-second: string ="Liste de questionnaires";
-second_url: string ="/surveys";
-second_bool:any =true;
+user: User;
 
  surveys : Array<Survey>;
   busy: Subscription;
@@ -30,7 +28,10 @@ second_bool:any =true;
   @ViewChild("DatatableBasic") dataTable: ElementRef;
 
   constructor(private surveyService: SurveyService, private router: Router,private storageService: StorageService, private http: Http) {
-  
+    this.busy = this.http.get('...').subscribe();
+
+
+  this.user= <User>storageService.read('user');
   }
 
   ngOnInit(): void {
@@ -38,16 +39,16 @@ second_bool:any =true;
     this.storageService.remove('currentSurvey');
     
     this.loadAllSurveys();
-    this.busy = this.http.get('...').subscribe();
+    
   }
 
   loadAllSurveys() {
     const baseContext = this;
-    this.busy = this.surveyService.getAll().subscribe(data => {
+     this.surveyService.getAll(this.user._id).subscribe(data => {
       this.surveys = data;
       console.log("survey "+JSON.stringify(data));
       setTimeout(function () {
-        baseContext.initializeListSurveyDataTables();
+        
       }, 100);
 
 
@@ -66,11 +67,7 @@ second_bool:any =true;
       
   }
 
-  initializeListSurveyDataTables() {
-    // Basic datatable
-    const tableListStation = jQuery('.datatable-basic');
-    tableListStation.DataTable();
-  }
+  
 
   editSurvey(index, surveyId) {
     this.storageService.write('currentSurvey', this.surveys[index]);

@@ -7,6 +7,8 @@ import {Subscription} from "rxjs/Subscription";
 import {Http} from '@angular/http';
 import {Router, ActivatedRoute} from "@angular/router";
 import {BusyModule} from 'angular2-busy';
+import {StorageService} from "../../shared/services/storage.service";
+import {User} from "../../shared/models/user.model";
 declare let swal: any;
 
 @Component({
@@ -15,19 +17,18 @@ declare let swal: any;
   styleUrls: []
 })
 export class AddPersonalComponent implements OnInit {
-first: string ="Personal";
-second: string ="Ajouter un personnel";
-second_url: string ="/personals/add";
-second_bool:any =true;
+user:User;
 
 
  personal: Personal;
  busy: Subscription;
  public myForm: FormGroup;
 
-constructor(private _fb: FormBuilder,private personalService: PersonalService,private route: ActivatedRoute,
+constructor(private storageService: StorageService, private _fb: FormBuilder,private personalService: PersonalService,private route: ActivatedRoute,
   private router: Router, private http: Http) { 
       this.busy = this.http.get('...').subscribe();
+
+      this.user= <User>storageService.read('user');
 }
  email = new FormControl('', [Validators.compose([EmailValidators.simple]),Validators.required]);
    ngOnInit() {
@@ -42,8 +43,12 @@ constructor(private _fb: FormBuilder,private personalService: PersonalService,pr
 
 save(myForm: FormGroup) {
   const baseContext = this;
-   this.personal= myForm.value;
+
+
+   this.personal= new Personal('',myForm.controls.email.value,this.user._id);
+  
    console.log(JSON.stringify(this.personal) );
+   console.log("idddddd uder: "+ this.user._id);
     
    //add personal 
    this.busy = this.personalService.add(this.personal)

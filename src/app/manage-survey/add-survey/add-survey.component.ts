@@ -14,6 +14,7 @@ import {ResponseService} from "../../shared/services/response.service";
 import {Subscription} from "rxjs/Subscription";
 import {Http} from '@angular/http';
 import {BusyModule} from 'angular2-busy';
+import {User} from '../../shared/models/user.model';
 declare let swal: any;
 
 @Component({
@@ -31,6 +32,7 @@ second_bool:any =true;
  busy: Subscription;
  public myForm: FormGroup;
  isEditAction: boolean;
+ user: User;
  
 
 constructor(private _fb: FormBuilder,private surveyService: SurveyService,private questionService: QuestionService,private responseService: ResponseService, private router: Router, private route: ActivatedRoute, private http: Http,private storageService: StorageService) { 
@@ -39,6 +41,8 @@ constructor(private _fb: FormBuilder,private surveyService: SurveyService,privat
       console.log("isedit: "+this.isEditAction);
       const baseContext = this;
 
+
+      this.user= <User>storageService.read('user');
     
       
    
@@ -203,7 +207,8 @@ save(myForm: FormGroup) {
   console.log( "*********submitedFormGroup******** "+ JSON.stringify(myForm.value));
     var id_survey;
     
-   this.survey= new Survey('',myForm.controls.title.value);
+   this.survey= new Survey('',myForm.controls.title.value, this.user._id);
+  
   
    console.log( "*********submitedSurvey******** "+ JSON.stringify( this.survey));
    //add survey 
@@ -316,7 +321,7 @@ else{
   console.log( "*********submitedFormGroup******** "+ JSON.stringify(myForm.value));
   var id_survey;
   
- this.survey= new Survey('',myForm.controls.title.value);
+ this.survey= new Survey('',myForm.controls.title.value,this.user._id);
 
  console.log( "*********submitedSurvey******** "+ JSON.stringify( this.survey));
  //add survey 
@@ -329,7 +334,14 @@ else{
             text: 'Survey edité avec succés',
             confirmButtonColor: "#66BB6A",
             type: "success"
-          });
+          }).then (function () {
+             
+              baseContext.router.navigate(["/survey/list"]);
+                        
+                   
+                    }, function(dismiss){
+                      
+                  });
           console.log(data);
           //getting the id of the added survey
            id_survey= data._id;

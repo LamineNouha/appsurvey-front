@@ -1,5 +1,5 @@
 import { Component, OnInit} from '@angular/core';
-import {Personal} from "../shared/models/personal.model";
+import {User} from "../shared/models/user.model";
 import {StorageService} from "../shared/services/storage.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {PersonalService} from "../shared/services/personal.service";
@@ -9,7 +9,7 @@ import {PersonalService} from "../shared/services/personal.service";
   styleUrls: []    
 })
 export class FullLayoutComponent implements OnInit {
-personal: Personal;
+user: User;
 components: NavigationMain[] = [];
 
 first: string;
@@ -21,7 +21,7 @@ second_bool:any =true;
   constructor(private storageService: StorageService, private userService: PersonalService,
               private router: Router,
               private route: ActivatedRoute) {
-    this.personal = <Personal>storageService.read('personal');
+    this.user = <User>storageService.read('user');
     this.router.events.subscribe((val) => {
       var url_components :string []=this.router.url.split('/');
       console.log("url components: "+url_components.length);
