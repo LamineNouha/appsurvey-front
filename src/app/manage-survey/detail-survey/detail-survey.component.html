@@ -6,7 +6,7 @@
 						<form  [formGroup]="myForm" novalidate (ngSubmit)="save(myForm)" class="form-horizontal" >
 							<div class="panel panel-flat">
 								<div class="panel-heading">
-									<h5 class="panel-title">Detail questionnaire  <button (click)="editSurvey()" type="button" class="btn btn-success btn-xs btn-icon"> <i class="icon-pencil7"></i></button></h5>
+									<h5 class="panel-title">Detail questionnaire  <button (click)="editSurvey()" type="button" class="btn btn-primary btn-xs btn-icon"> <i class="icon-pencil7"></i></button></h5>
 									<div class="heading-elements">
 										<ul class="icons-list">
 											<li><a data-action="collapse"></a></li>
@@ -157,7 +157,7 @@
 									</fieldset>
 
 									<div class="text-right">
-										<button type="submit" class="btn btn-primary" [disabled]="!myForm.valid">vailder <i class="icon-arrow-right14 position-right"></i></button>
+										<button type="button" class="btn btn-primary" (click)="editSurvey()">Editer <i class="icon-pencil3 position-left"></i></button>
 									</div>
 								</div>
 							</div>

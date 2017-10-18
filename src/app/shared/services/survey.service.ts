@@ -1,6 +1,8 @@
 import {StorageService} from "app/shared/services/storage.service";
 import {GenericService} from "./generic.service";
 import {Survey} from "../models/survey.model";
+import {FormGroup} from '@angular/forms';
+
 
 import {EventEmitter, Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
@@ -29,7 +31,7 @@ export class SurveyService extends GenericService {
       .catch(this.handleErrors);
   }
 
- getAll(userId: string) {
+ getAll(userId) {
     this.headers.set("Authorization", "Bearer " + this.storageService.read("token"));
     const url = Config.baseUrl + "/surveys/"+ userId;
 
@@ -51,7 +53,7 @@ export class SurveyService extends GenericService {
       .catch(this.handleErrors);
   }
 
-  add(survey: Survey) {
+  add(survey: FormGroup) {
     var id;
     
     this.headers.set("Authorization", "Bearer " + this.storageService.read("token"));
@@ -66,6 +68,22 @@ export class SurveyService extends GenericService {
       .catch(this.handleErrors);
 
   }
+/*
+  modify(surveyId: string,survey: FormGroup) {
+    var id;
+    
+    this.headers.set("Authorization", "Bearer " + this.storageService.read("token"));
+    const url = Config.baseUrl + "/surveys/" + surveyId + "/edit";
+    console.log(url);
+     return this.http.post(url,
+      survey, {
+        headers: this.headers
+      })
+      .map(res => res.json())
+    
+      .catch(this.handleErrors);
+
+  }*/
 
 
 

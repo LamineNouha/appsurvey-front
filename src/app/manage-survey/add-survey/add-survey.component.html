@@ -1,7 +1,7 @@
 				<!-- our component html specifications -->
 				<!-- Basic legend -->
 
-					<div class="row">
+				<div class="row">
 						<div class="col-md-12">
 							<form  [formGroup]="myForm" novalidate (ngSubmit)="save(myForm)" class="form-horizontal" >
 								<div class="panel panel-flat">
@@ -45,9 +45,7 @@
                       	<legend class="text-semibold">
 												<i class="icon-file-text2 position-left"></i>
 												Les questions 
-												<a class="control-arrow" data-toggle="collapse" data-target="#demo1" (click)="addQuestion()">
-												<i class="glyphicon glyphicon-plus"></i>
-												</a>
+												
 											</legend>
 					                	
                       
@@ -69,7 +67,7 @@
 
 
 
-												<button style="float:right" type="button" class="note-btn btn btn-default btn-sm" *ngIf="myForm.controls.questions.controls.length > 1" (click)="removeQuestion()">
+												<button style="float:right" type="button" class="note-btn btn btn-default btn-sm" *ngIf="myForm.controls.questions.controls.length > 1" (click)="removeQuestion(i)">
 												<i class="icon-cross2 text-danger-400"></i>
 												</button>
 												</h6>
@@ -108,17 +106,23 @@
             <label class="control-label" for="field1">Les éléments de réponse:</label>
             <div class="controls" > 
                 <div formArrayName="responses" role="form" autocomplete="off" id="formq1" >
-                    <div class="entry input-group col-xs-3" id="entryq1r1" *ngFor="let responses of myForm.controls.questions.controls[i].controls.responses.controls; let j=index" [formGroupName]="j" >
+                    <div class="entry input-group col-xs-6" id="entryq1r1" *ngFor="let responses of myForm.controls.questions.controls[i].controls.responses.controls; let j=index" [formGroupName]="j" >
 						<input id="q1r1"  class="form-control" formControlName="choice" type="text" placeholder="Réponse{{j+1}} " />
 				 <small [hidden]="myForm.controls.questions.controls[i].controls.responses.controls[j].controls.choice.valid" class="text-danger">
             La réponse est obligatoire
-                </small>
+				</small>
+				
                         <span class="input-group-btn">
-                            <button class="btn btn-success" type="button" (click)="addResponse(i,j+1)">
-                                <span class="glyphicon glyphicon-plus"></span>
-                            </button> <button class="btn btn-danger" type="button" *ngIf="myForm.controls.questions.controls[i].controls.responses.controls.length > 1" (click)="removeResponse(i,j)">
-                                <span class="glyphicon glyphicon-plus"></span>
-                            </button>
+							
+							<a  (click)="addResponse(i,j+1)">
+									<i class="icon-diff-added position-left text-success"></i>
+									</a>
+
+									<a *ngIf="myForm.controls.questions.controls[i].controls.responses.controls.length > 1" (click)="removeResponse(i,j)">
+											<i class="icon-diff-removed position-left text-danger"></i>
+											</a>
+
+								
 						</span>
 				
 				
@@ -147,17 +151,20 @@
 							</div>
 							</div>
 
-
+							
               <!--fin accordition-->
                       </div>         		
 
 
 							
-
 							
 
 									
-
+					  <hr>
+					  <div class="text-right">
+					  <button type="button" class="btn btn-success" (click)="addQuestion()" >Ajouter une question<i class="icon-plus2 position-right"></i></button>
+					  <hr>
+					  </div>
 				             
 
 				                

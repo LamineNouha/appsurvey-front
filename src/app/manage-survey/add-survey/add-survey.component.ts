@@ -200,6 +200,10 @@ initQuestion(nbq:number) {
         const control1= <FormArray>control.at(i).get('responses');
         control1.removeAt(j);
     }
+
+
+
+    
 save(myForm: FormGroup) {
     const baseContext = this;
     if(!this.isEditAction){
@@ -212,7 +216,7 @@ save(myForm: FormGroup) {
   
    console.log( "*********submitedSurvey******** "+ JSON.stringify( this.survey));
    //add survey 
-   this.busy = this.surveyService.add(this.survey)
+   this.busy = this.surveyService.add(myForm.value)
         .subscribe(
           (data) => {
             console.log("swal");
@@ -229,7 +233,7 @@ save(myForm: FormGroup) {
                       }, function(dismiss){
                         
                     });
-            console.log(data);
+           /* console.log(data);
             //getting the id of the added survey
              id_survey= data._id;
              console.log("id of added survey: "+id_survey);
@@ -272,7 +276,7 @@ for (var j = 0; j < control1.length; j++) {
 
 var response:Response;
       var id_response;
-      response=new Response(control1.at(j).value.choice,id_question);
+      response=new Response(control1.at(j).value.choice,id_question,false);
      
       //adding each response to the base
      this.responseService.add(response)
@@ -291,7 +295,8 @@ var response:Response;
 
 }
     ////**
-          },
+          
+},
             (error) => {
  console.log(error);
           }
@@ -299,7 +304,7 @@ var response:Response;
 
 }
     //*
-          },
+      */    },
           (error) => {
 
           }
@@ -309,7 +314,7 @@ var response:Response;
 }
 else{
 
-
+    //editAction
     this.busy = this.surveyService.deleteOne(this.surveyId).subscribe(data => {
        
       }, error => {
@@ -321,11 +326,11 @@ else{
   console.log( "*********submitedFormGroup******** "+ JSON.stringify(myForm.value));
   var id_survey;
   
- this.survey= new Survey('',myForm.controls.title.value,this.user._id);
+ //this.survey= new Survey('',myForm.controls.title.value,this.user._id);
 
  console.log( "*********submitedSurvey******** "+ JSON.stringify( this.survey));
  //add survey 
- this.busy = this.surveyService.add(this.survey)
+ this.busy = this.surveyService.add(myForm.value)
       .subscribe(
         (data) => {
           console.log("swal");
@@ -342,7 +347,7 @@ else{
                     }, function(dismiss){
                       
                   });
-          console.log(data);
+         /* console.log(data);
           //getting the id of the added survey
            id_survey= data._id;
            //deleting current survey from storage
@@ -387,7 +392,7 @@ for (var j = 0; j < control1.length; j++) {
 
 var response:Response;
     var id_response;
-    response=new Response(control1.at(j).value.choice,id_question);
+    response=new Response(control1.at(j).value.choice,id_question,false);
    
     //adding each response to the base
    this.responseService.add(response)
@@ -414,6 +419,8 @@ console.log(error);
 
 }
   //*
+
+  */
         },
         (error) => {
 

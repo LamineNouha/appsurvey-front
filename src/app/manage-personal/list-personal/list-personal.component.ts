@@ -18,7 +18,7 @@ declare var PNotify: any;
   styleUrls: []
 })
 export class ListPersonalComponent implements OnInit {
-user: User;
+
 
 
 
@@ -31,7 +31,7 @@ user: User;
   constructor(private storageService: StorageService, private personalService: PersonalService, private router: Router, private http: Http) {
   this.busy = this.http.get('...').subscribe();
 
-  this.user= <User>storageService.read('user');
+ 
   }
 
   ngOnInit(): void {
@@ -41,7 +41,7 @@ user: User;
 
   loadAllPersonals() {
     const baseContext = this;
-    this.personalService.getAll(this.user._id).subscribe(data => {
+    this.personalService.getAll().subscribe(data => {
       this.personals = data;
     
     }, error => {

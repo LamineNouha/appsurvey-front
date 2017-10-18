@@ -10,11 +10,13 @@ export const APP_ROUTES: Routes = [
   children: [
       {path: 'survey', loadChildren: "./manage-survey/manage-survey.module#ManageSurveyModule"},
       {path: 'personal', loadChildren: "./manage-personal/manage-personal.module#ManagePersonalModule"},
+      
 
   ],
  
 },
   {path: 'auth', loadChildren: './login/login.module#AuthModule'},
+  
 ];
 
 @NgModule({

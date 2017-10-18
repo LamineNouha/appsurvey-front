@@ -5,7 +5,6 @@ import { RouterModule } from '@angular/router';
 // Components
 import { AppHeaderComponent } from './app-header/app-header.component';
 import { AppFooterComponent } from './app-footer/app-footer.component';
-import { AppMainNavbarComponent } from './app-main-navbar/app-main-navbar.component';
 
 //import { FullLayoutComponent } from './full-layout.component';
 
@@ -19,7 +18,6 @@ import { AppMainNavbarComponent } from './app-main-navbar/app-main-navbar.compon
      exports: [
     AppHeaderComponent,
     AppFooterComponent,
-    AppMainNavbarComponent,
    
     //FullLayoutComponent
   ],
@@ -27,7 +25,6 @@ import { AppMainNavbarComponent } from './app-main-navbar/app-main-navbar.compon
   declarations: [ 
     AppHeaderComponent,
     AppFooterComponent,
-    AppMainNavbarComponent,
   
     //FullLayoutComponent 
   

@@ -6,7 +6,7 @@ import {User} from "../shared/models/user.model";
 import {AuthService} from "../shared/services/auth.service";
 import {StorageService} from "../shared/services/storage.service";
 import {Personal} from '../shared/models/personal.model';
-
+declare let swal: any;
 declare var jQuery: any;
 @Component({
   templateUrl: './login.component.html',
@@ -44,6 +44,8 @@ alert2: boolean =false;
           this.stoarageService.write("token", data.token);
           this.router.navigate(["/"], {queryParams: {reload: true}});
 
+          
+
         },
         (error) => {
           this.isLoading = false;
@@ -65,7 +67,13 @@ alert2: boolean =false;
           .subscribe(
             (data) => {
               this.isLoading = false;
-              this.router.navigate(["/"], {queryParams: {reload: true}});
+              //this.router.navigate(["/"], {queryParams: {reload: true}});
+              swal({
+                title: "Succés!",
+                text: 'Survey edité avec succés',
+                confirmButtonColor: "#66BB6A",
+                type: "success"
+              });
     
             },
             (error) => {

@@ -13,11 +13,7 @@ constructor(a:string, s:string){
   console.log("ssssss"+s);
   this.survey=s;
 };
-  /*constructor(obj?: any) {
-    this.contenu = obj && obj.contenu || null;
-    this.reponses = obj && obj.reponses || null;
-    
-  }*/
+  
 }
 
 export class Survey {
@@ -34,22 +30,20 @@ this.user = user;
 
   };
 
-  /*constructor(obj?: any) {
-    this.id = obj && Number(obj.id) || null;
-    this.titre = obj && obj.titre || null;
-    this.questions = obj && obj.questions || null;
-  }*/
+  
 
 }
   export class Response {
   id?: string;
   question: string;
   choice: string;
+  checked: boolean;
  
   
-  constructor(t: string, q: string){
+  constructor(t: string, q: string, checked:boolean){
 this.choice=t;
 this.question=q;
+this.checked=checked;
 
   };
 

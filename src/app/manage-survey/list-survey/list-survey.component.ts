@@ -20,7 +20,8 @@ declare var swal: any;
 })
 export class ListSurveyComponent implements OnInit {
  q:Question[];
-user: User;
+ user: User;
+
 
  surveys : Array<Survey>;
   busy: Subscription;
@@ -29,9 +30,8 @@ user: User;
 
   constructor(private surveyService: SurveyService, private router: Router,private storageService: StorageService, private http: Http) {
     this.busy = this.http.get('...').subscribe();
+    this.user= <User>storageService.read('user');
 
-
-  this.user= <User>storageService.read('user');
   }
 
   ngOnInit(): void {

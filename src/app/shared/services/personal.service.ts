@@ -30,9 +30,9 @@ export class PersonalService extends GenericService {
   }
   */
 
- getAll(userId: string) {
+ getAll() {
     this.headers.set("Authorization", "Bearer " + this.storageService.read("token"));
-    const url = Config.baseUrl + "/users/" + userId + "/listPer";
+    const url = Config.baseUrl + "/users/" + "listPer";
 
 
     
