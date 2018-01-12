@@ -29,7 +29,7 @@ second_bool:any =true;
         
               this.first="Dashbord";
               this.second_bool=false;
-              this.first_url="/";
+              this.first_url="/dashboard";
               this.second="";
             }
             else{
@@ -77,6 +77,16 @@ second_bool:any =true;
           
         }
   }
+
+  if(url_components[1]=="dashboard"){
+    this.first="Qestionnaires";
+    this.first_url='/survey/list';
+    this.second_bool=false;
+    //if(url_components[3]=="detail"){
+      this.second="Detail statistiques";
+        //}
+}
+
   } 
     }
 
@@ -91,7 +101,7 @@ second_bool:any =true;
  this.components = [
       {
         name: "Dashboard",
-        url: "/",
+        url: "/dashboard",
         icon: "icon-home4",
       
       },
@@ -130,7 +140,7 @@ second_bool:any =true;
       params => {
         console.log(params.reload);
         if (params.reload) {
-          window.location.href = "/";
+          window.location.href = "/dashboard";
         }
 
       }

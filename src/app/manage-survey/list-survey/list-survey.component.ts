@@ -78,6 +78,11 @@ export class ListSurveyComponent implements OnInit {
     this.storageService.write('currentSurvey', this.surveys[index]);
     this.router.navigate(['survey/' + surveyId + "/detail"]);
   }
+  
+  statSurvey(index, surveyId) {
+    this.storageService.write('currentSurvey', this.surveys[index]);
+    this.router.navigate(['dashboard/' + surveyId + "/detail"]);
+  }
 
   deleteSurvey(index, surveyId) {
     const baseContext = this;

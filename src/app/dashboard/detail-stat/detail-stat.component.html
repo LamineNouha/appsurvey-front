@@ -1,0 +1,159 @@
+<!-- Highlighted tabs -->
+<!-- 2 columns form -->
+
+					<!-- Available hours -->
+					<div class="panel text-center">
+							
+							
+							<div class="panel-body">
+								<div class="heading-elements">
+									
+								</div>
+
+								<!-- Progress counter -->
+								<div class="content-group-sm svg-center position-relative" id="hours-available-progress">
+										<div class="col-lg-12">
+												<!-- Numbers -->
+												<div class="container-fluid">
+														<div class="row text-center">
+															<div class="col-md-4">
+																<div class="content-group">
+																	<h6 class="text-semibold no-margin"><i class="icon-man-woman position-left text-slate"></i> {{total}}</h6>
+																	<span class="text-muted text-size-small">Nombre de répondants</span>
+																</div>
+															</div>
+										
+															<div class="col-md-4">
+																<div class="content-group">
+																	<h6 class="text-semibold no-margin"><i class="icon-woman position-left text-slate"></i> {{sex_tab[1]}}</h6>
+																	<span class="text-muted text-size-small">Femmes</span>
+																</div>
+															</div>
+										
+															<div class="col-md-4">
+																<div class="content-group">
+																	<h6 class="text-semibold no-margin"><i class="icon-man position-left text-slate"></i> {{sex_tab[0]}}</h6>
+																	<span class="text-muted text-size-small">Homme</span>
+																</div>
+															</div>
+														</div>
+													</div>
+													<!-- /numbers -->
+												</div>
+									</div>
+								<!-- /progress counter -->
+
+
+								<!-- Bars -->
+								<div id="hours-available-bars"></div>
+								<!-- /bars -->
+
+							</div>
+						</div>
+						<!-- /available hours -->
+
+
+	<div class="panel panel-flat">
+		<div class="panel-heading">
+			<h5 class="panel-title">{{survey.title}}
+					
+			</h5>
+			
+			<div class="heading-elements">
+					
+
+				<ul class="icons-list">
+					<li><a data-action="collapse"></a></li>
+					<li><a data-action="reload"></a></li>
+					<li><a data-action="close"></a></li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-md-6">
+					<fieldset>
+						<legend class="text-semibold"><i class="icon-copy position-left"></i> La liste des questions</legend>
+
+						
+						<div class="table-responsive pre-scrollable">
+							
+								 
+										 <table class="table">
+												 <thead>
+													 <tr>
+														 <th>#</th>
+														 <th>Question</th>
+														 <th>Nombre de choix de réponse</th>
+													 </tr>
+												 </thead>
+												 <tbody>
+													<tr *ngFor="let question of survey.questions;let i = index" (click)="onClickRaw(i)" [class.active]="i == selectedRow">
+															 <td>{{i+1}}</td>
+															 <td>{{question.content}}</td>
+															 <td>{{question.responses.length}}</td>
+														 
+														 </tr>
+													
+												 
+											 
+												 
+												 
+												 </tbody>
+											 </table>
+		 
+								 
+							  
+		 
+							
+		 
+								
+							 </div>
+					</fieldset>
+				</div>
+
+				<div class="col-md-6">
+					<fieldset>
+						<legend class="text-semibold"><i class="icon-bars-alt position-left"></i> Les statistiques du question  </legend>
+
+								<app-pie-chart [doughnutChartLabels]="doughnutChartLabels" [doughnutChartData]="doughnutChartData"></app-pie-chart>
+					
+
+						
+					</fieldset>
+				</div>
+			</div>
+
+			
+		</div>
+	</div>
+
+<!-- /2 columns form -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+						
+   
+
+
+
+        

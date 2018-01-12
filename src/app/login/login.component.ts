@@ -42,7 +42,7 @@ alert2: boolean =false;
           this.isLoading = false;
           this.stoarageService.write("user", data.user);
           this.stoarageService.write("token", data.token);
-          this.router.navigate(["/"], {queryParams: {reload: true}});
+          this.router.navigate(["/dashboard"], {queryParams: {reload: true}});
 
           
 

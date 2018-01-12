@@ -22,10 +22,7 @@ declare let swal: any;
   styleUrls: []
 })
 export class DetailSurveyComponent implements OnInit {
-first: string ="Questionnaire";
-second: string ="Ajouter un questionnaire";
-second_url: string ="/surveys/add";
-second_bool:any =true;
+
 survey: Survey;
 surveyId: string;
 busy: Subscription;

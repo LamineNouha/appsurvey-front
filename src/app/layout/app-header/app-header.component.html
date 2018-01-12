@@ -14,13 +14,13 @@
 					<div class="breadcrumb-line">
 
 						<ul  *ngIf="second_bool;  else falsyTemplateclass" class="breadcrumb">
-							<li><a [routerLink]="['/']"><i class="icon-home2 position-left"></i>Acceuil</a></li>
+							<li><a [routerLink]="['/dashboard']"><i class="icon-home2 position-left"></i>Acceuil</a></li>
 							<li ><a (click)="goUrl(first_url)"> {{first}}</a></li>
 							<li class="active" >{{second}}</li>
 						</ul>
 						<ng-template #falsyTemplateclass>
 							<ul class="breadcrumb">
-							<li><a [routerLink]="['/']"><i class="icon-home2 position-left"></i>Acceuil</a></li>
+							<li><a [routerLink]="['/dashboard']"><i class="icon-home2 position-left"></i>Acceuil</a></li>
 							<li class="active">{{first}}</li>
 						
 						</ul>

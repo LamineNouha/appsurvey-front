@@ -29,7 +29,8 @@ export class QuestionService extends GenericService {
       .catch(this.handleErrors);
   }
 
- getAll() {
+
+ getAll(surveyId) {
     this.headers.set("Authorization", "Bearer " + this.storageService.read("token"));
     const url = Config.baseUrl + "/questions";
 
